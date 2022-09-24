@@ -1,0 +1,4088 @@
+1. Write a C program to find the sum of all the elements of an array.
+(Using Dynamic Memory Allocation)
+#include<stdio.h>
+
+#include<stdlib.h>
+
+void main()
+{
+	int* p=NULL;
+	int* n=NULL;
+	int i;
+	int* sum=NULL;
+	printf("Enter How Many Element You Want\n");
+	n = (int*)malloc(sizeof(int));
+	scanf_s("%d", n);
+	printf("Enter Array Element\n");
+	p = (int*)malloc(*n * sizeof(int));
+
+	for (i = 0; i < *n; i++)
+	{
+		scanf_s("%d", p + i);
+	}
+
+	printf("Array Element Are\n");
+	
+	for (i = 0; i < *n; i++)
+	{
+		printf("%d\n", *(p + i));
+	}
+	printf("Sum of Element is\n");
+	sum = (int*)malloc(sizeof(int));
+	*sum = 0;
+	for (i = 0; i < *n; i++)
+	{
+		*sum = *sum + *(p + i);
+	}
+	printf("%d", *sum);
+}
+
+OUTPUT:
+Enter Array Element
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+Array Element Are
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+Sum of Element is
+55
+**********************************************
+2. Write a C program to accept string with multiple spaces from user and print
+as it is. (Using Dynamic Memory Allocation)
+#include<stdio.h>
+
+#include<stdlib.h>
+void main()
+{
+	int size=1, i=0;
+
+	char ch;
+
+	char* p = NULL;
+
+	p = (char*)malloc(sizeof(char));
+	*p = '\0';
+
+	printf("Enter String\n");
+
+	do
+	{
+		scanf_s("%c", &ch);
+		if (ch != '\n')
+		{
+			size++;
+			p = (char*)realloc(p, size * sizeof(char));
+			*(p + i) = ch;
+			*(p + i+1) = '\0';
+			i++;
+		}
+
+	} while (ch != '\n');
+	printf("%s", p);
+
+}
+
+OUTPUT:
+Enter String
+    India     Is    My    Country
+    India     Is    My    Country
+******************************************
+3. Write a C program to accept string with multiple spaces from user and print 
+it with a sinlge space as a delimiter. (Using Dynamic Memory Allocation)
+Eg:
+ Input String:
+ _____India_____is_my_________country______________
+ Output String:
+ India_is_my_country (Consider _ as space)
+
+#include<stdio.h>
+
+#include<stdlib.h>
+void main()
+{
+	int size = 1, i = 0, k;
+
+	char ch;
+
+	char* p = NULL;
+
+	p = (char*)malloc(sizeof(char));
+	*p = '\0';
+
+	printf("Enter String\n");
+
+	do
+	{
+		scanf_s("%c", &ch);
+		if (ch != '\n')
+		{
+			size++;
+			p = (char*)realloc(p, size * sizeof(char));
+			*(p + i) = ch;
+			*(p + i + 1) = '\0';
+			i++;
+		}
+
+	} while (ch != '\n');
+	printf("Your String %s\n", p);
+
+	i = 0;
+	while (*(p + i) != '\0')
+	{
+		while (*(p + i) == ' ')
+		{
+			i++;
+		}
+		while (*(p + i) != ' ' && *(p + i) != '\0')
+		{
+			printf("%c", *(p + i));
+			i++;
+			if (*(p + i) == ' ')
+			{
+				k= i;
+				while (*(p + k)==' ')
+				{
+					k++;
+				}
+				if (*(p + k) == '\0')
+					break;
+				printf("_");
+			}
+		}
+	}
+}
+
+OUTPUT:
+Enter String
+     india  is    my   country
+Your String      india  is    my   country
+india_is_my_country
+**********************************
+4. Write a C program that return the positions of the pallindrome
+element in array (Using Dynamic Memory Allocation)
+#include<stdio.h>
+
+void main()
+{
+	int* n = NULL;
+	int* p = NULL;
+	int i,rem,rev=0,x;
+	printf("Enter How Many Element\n");
+	n = (int*)malloc(sizeof(int));
+	scanf_s("%d", n);
+
+	printf("Enter Array Element\n");
+
+	p = (int*)malloc(*n * sizeof(int));
+	for (i = 0; i < *n; i++)
+	{
+		scanf_s("%d", p + i);
+	}
+
+	printf("Array Element Are\n");
+	for (i = 0; i < *n; i++)
+	{
+		printf("%d\n", *(p + i));
+	}
+
+	for (i = 0; i < *n; i++)
+	{
+		x=*(p + i);
+		while (x != 0)
+		{
+			rem = x % 10;
+			x = x / 10;
+			rev = rev * 10 + rem;
+		}
+		if (rev == *(p + i))
+		{
+			printf("Palindrome no At Position %d\n", i);
+		}
+		rev = 0;
+	}
+
+}
+OUTPUT:
+Enter How Many Element
+5
+Enter Array Element
+121
+23
+45
+121
+435
+Array Element Are
+121
+23
+45
+121
+435
+Palindrome no At Position 0
+Palindrome no At Position 3
+***************************************
+5. Write a C program to sort first half of array in ascending order and
+second half of array in descending order. (Using Dynamic Memory
+Allocation)
+#include<stdio.h>
+
+void main()
+{
+	int* n = NULL;
+	int* p = NULL;
+	int i,n1,k,temp;
+	printf("Enter How Many Element\n");
+	n = (int*)malloc(sizeof(int));
+	scanf_s("%d", n);
+	n1 = *n / 2;
+	printf("Enter Array Element\n");
+
+	p = (int*)malloc(*n * sizeof(int));
+	for (i = 0; i < *n; i++)
+	{
+		scanf_s("%d", p + i);
+	}
+
+	printf("Array Element Are\n");
+	for (i = 0; i < *n; i++)
+	{
+		printf("%d\n", *(p + i));
+	}
+
+	for (i = 0; i < n1; i++)
+	{
+		for (k = 0; k < n1; k++)
+		{
+			if (*(p + i) < *(p + k))
+			{
+				temp = *(p + i);
+				*(p + i) = *(p + k);
+				*(p + k) = temp;
+			}
+		}
+	}
+	for (i = n1; i < *n; i++)
+	{
+		for (k = n1; k < *n; k++)
+		{
+			if (*(p + i) > *(p + k))
+			{
+				temp = *(p + i);
+				*(p + i) = *(p + k);
+				*(p + k) = temp;
+			}
+		}
+	}
+	printf("Anaswer\n");
+	for (i = 0; i < *n; i++)
+	{
+		printf("%d\n", *(p + i));
+	}
+}
+OUTPUT:
+Enter How Many Element
+5
+Enter Array Element
+54
+43
+21
+23
+45
+Array Element Are
+54
+43
+21
+23
+45
+Anaswer
+43
+54
+45
+23
+21
+**********************************
+6. Write a C program to print count of number characters in given string.
+(Using Dynamic Memory Allocation)
+#include<stdio.h>
+
+#include<stdlib.h>
+void main()
+{
+	int size = 1, i = 0, count=0;
+
+	char ch;
+
+	char* p = NULL;
+
+	p = (char*)malloc(sizeof(char));
+	*p = '\0';
+
+	printf("Enter String\n");
+
+	do
+	{
+		scanf_s("%c", &ch);
+		if (ch != '\n')
+		{
+			size++;
+			p = (char*)realloc(p, size * sizeof(char));
+			*(p + i) = ch;
+			*(p + i + 1) = '\0';
+			i++;
+		}
+
+	} while (ch != '\n');
+	printf("Your String %s\n", p);
+
+	i = 0;
+	while (*(p + i) != '\0')
+	{
+		if(*(p + i) == ' ')
+		{
+			i++;
+		}
+		if(*(p + i) != ' ' && *(p + i) != '\n')
+		{
+			count++;
+			i++;
+		}
+	}
+	printf("%d character in a given string\n", count);
+	free(p);
+	p = NULL;
+}
+OUTPUT:
+Enter String
+    india   is   my   country
+Your String     india   is   my   country
+16 character in a given string
+*******************************************
+7. Write a C program to accept string and print it in the reverse order. (Using 
+Dynamic Memory Allocation)
+Eg:
+Input String: India is my country
+Output String: yrtnuoc ym si aidnI
+
+#include<stdio.h>
+
+#include<stdlib.h>
+void main()
+{
+	int size = 1, i = 0, count=0;
+
+	char ch;
+
+	char* p = NULL;
+
+	p = (char*)malloc(sizeof(char));
+	*p = '\0';
+
+	printf("Enter String\n");
+
+	do
+	{
+		scanf_s("%c", &ch);
+		if (ch != '\n')
+		{
+			size++;
+			p = (char*)realloc(p, size * sizeof(char));
+			*(p + i) = ch;
+			*(p + i + 1) = '\0';
+			i++;
+		}
+
+	} while (ch != '\n');
+	printf("Your String %s\n", p);
+
+	i = 0;
+	while (*(p+i) != '\0')
+	{
+		count++;
+		i++;
+	}
+
+	for (i = count; i >= 0; i--)
+	{
+		if (*(p+i) != ' ')
+		{
+			printf("%c", *(p + i));
+
+			if (*(p + i-1) == ' ')
+			{
+				printf(" ");
+			}
+		}
+	}
+}
+OUTPUT:
+Enter String
+   India   is   my  country
+Your String    India   is   my  country
+ yrtnuoc ym si aidnI
+*******************************************
+8. Write a C program to copy the elements of one array into another 
+array. (Using Dynamic Memory Allocation)
+#include<stdio.h>
+
+void main()
+{
+	int* n = NULL;
+	int* p = NULL;
+	int* q = NULL;
+	int i;
+	printf("Enter How Many Element\n");
+	n = (int*)malloc(sizeof(int));
+	scanf_s("%d", n);
+	printf("Enter Array Element\n");
+
+	p = (int*)malloc(*n * sizeof(int));
+	for (i = 0; i < *n; i++)
+	{
+		scanf_s("%d", p + i);
+	}
+
+	printf("Array Element Are\n");
+	for (i = 0; i < *n; i++)
+	{
+		printf("%d\n", *(p + i));
+	}
+
+	q = (int*)malloc(*n * sizeof(int));
+	for (i = 0; i < *n; i++)
+	{
+		*(q + i) = *(p + i);
+	}
+	printf("Anaswer\n");
+	for (i = 0; i < *n; i++)
+	{
+		printf("%d\n", *(q + i));
+	}
+}
+OUTPUT:
+Enter How Many Element
+5
+Enter Array Element
+1
+2
+3
+4
+5
+Array Element Are
+1
+2
+3
+4
+5
+Anaswer
+1
+2
+3
+4
+5
+*******************************
+9. Write a C program to count count of number of vowels and number of 
+consonants in the given string. (Using Dynamic Memory Allocation)
+
+#include<stdio.h>
+
+#include<stdlib.h>
+void main()
+{
+	int size = 1, i = 0, count=0,count1=0;
+
+	char ch;
+
+	char* p = NULL;
+
+	p = (char*)malloc(sizeof(char));
+	*p = '\0';
+
+	printf("Enter String\n");
+
+	do
+	{
+		scanf_s("%c", &ch);
+		if (ch != '\n')
+		{
+			size++;
+			p = (char*)realloc(p, size * sizeof(char));
+			*(p + i) = ch;
+			*(p + i + 1) = '\0';
+			i++;
+		}
+
+	} while (ch != '\n');
+	printf("Your String %s\n", p);
+
+	i = 0;
+	while (*(p+i) != '\0')
+	{
+		if (*(p + i) == 'a' || *(p + i) == 'e' || *(p + i) == 'i' || *(p + i) == 'o' || *(p + i) == 'u'
+			|| *(p + i) == 'A' || *(p + i) == 'E' || *(p + i) == 'I' || *(p + i) == 'O' || *(p + i) == 'U')
+		{
+			count++;
+		}
+		else if (*(p + i) != ' ')
+		{
+			count1++;
+		}
+		i++;
+	}
+
+	printf("number of vowels %d and number of consonants %d", count, count1);
+}
+OUTPUT:
+Enter String
+     India   Is   My   Country
+Your String      India   Is   My   Country
+number of vowels 6 and number of consonants 10
+*********************************************
+10. Write a C program to reverse a given string as below. (Using Dynamic 
+Memory Allocation)
+Eg:
+Input String: India is my country
+Output String: aidnI si ym yrtnuoc
+#include<stdio.h>
+
+#include<stdlib.h>
+void main()
+{
+	int size = 1, i = 0,j;
+
+	char ch;
+
+	char* p = NULL;
+
+	p = (char*)malloc(sizeof(char));
+	*p = '\0';
+
+	printf("Enter String\n");
+
+	do
+	{
+		scanf_s("%c", &ch);
+		if (ch != '\n')
+		{
+			size++;
+			p = (char*)realloc(p, size * sizeof(char));
+			*(p + i) = ch;
+			*(p + i + 1) = '\0';
+			i++;
+		}
+
+	} while (ch != '\n');
+	printf("Your String %s\n", p);
+
+	i = 0;
+	while (*(p + i) != '\0')
+	{
+		if (*(p + i) == ' ' || *(p + i) != ' ' || *(p + i+1) == ' ')
+		{
+			i++;
+		}
+		//printf("%d", i);
+		if (*(p + i) != ' ' && (*(p + i+1) == ' ' || *(p + i+1) == '\0'))
+		{
+			for (j = i; *(p + j) != ' ' && j >= 0; j--)
+			{
+				printf("%c", *(p + j));1
+
+				if (*(p + j) != ' ' && *(p + j-1) == ' ')
+				{
+					printf(" ");
+				}
+				if (j == 0)
+				{
+					printf(" ");
+				}
+
+
+			}
+		}
+
+
+	}
+}
+OUTPUT:
+Enter String
+   india   is   my1   country
+Your String    india   is   my1   country
+aidni si 1ym yrtnuoc
+*************************************
+11. Write a C program to sort only even numbers in given array.
+(Using Dynamic Memory Allocation)
+Eg.
+Input: 45 8 75 29 5 49 56 22 14 497 288 18 2
+Output: 45 2 75 29 5 49 8 14 18 497 22 56 288
+
+
+#include<stdio.h>
+#include<stdlib.h>
+void main()
+{
+	int* p = NULL;
+	int* q = NULL;
+	int n, i, k=0, temp, j, count=0;
+	printf("please enter how many elements you want\n");
+	scanf_s("%d", &n);
+	p = (int*)malloc(n * sizeof(int));
+	q = (int*)malloc(n * sizeof(int));
+	printf("please enter the array elements\n");
+	for (i = 0; i < n; i++)
+	{
+		scanf_s("%d", p + i);
+	}
+	printf("array elements are\n");
+	for (i = 0; i < n; i++)
+	{
+		printf("%d\n", *(p + i));
+	}
+	for (i = 0; i < n; i++)
+	{
+		if (*(p+i) % 2 == 0)
+		{
+			*(q+k) = *(p+i);
+			k++;
+			count++;
+		}
+	}
+	for (k = 0; k < count; k++)
+	{
+		for (j = k + 1; j < count; j++)
+		{
+			if (*(q+k) > *(q+j))
+			{
+				temp = *(q + k);
+				*(q + k) = *(q + j);
+				*(q + j) = temp;
+			}
+		}
+	}
+	k = 0;
+	for (i = 0; i < n; i++)
+	{
+		if (*(p+i) % 2 == 0)
+		{
+			*(p+i) = *(q+k);
+			k++;
+		}
+	}
+	printf("sorted array is:\n");
+	for (i = 0; i < n; i++)
+	{
+		printf("%d ", *(p+i));
+	}
+
+}
+
+output:
+
+please enter how many elements you want
+13
+please enter the array elements
+45
+8
+75
+29
+5
+49
+56
+22
+14
+497
+288
+18
+2
+array elements are
+45
+8
+75
+29
+5
+49
+56
+22
+14
+497
+288
+18
+2
+sorted array is:
+45 2 75 29 5 49 8 14 18 497 22 56 288
+
+************************************
+12. Write a C program to replace space with ‘$’ in given string. (Using 
+Dynamic Memory Allocation)
+Eg:
+Input String: India is my country
+Output String: India$is$my$coutry
+
+#include<stdio.h>
+
+#include<stdlib.h>
+void main()
+{
+	int size = 1, i = 0, k;
+
+	char ch;
+
+	char* p = NULL;
+
+	p = (char*)malloc(sizeof(char));
+	*p = '\0';
+
+	printf("Enter String\n");
+
+	do
+	{
+		scanf_s("%c", &ch);
+		if (ch != '\n')
+		{
+			size++;
+			p = (char*)realloc(p, size * sizeof(char));
+			*(p + i) = ch;
+			*(p + i + 1) = '\0';
+			i++;
+		}
+
+	} while (ch != '\n');
+	printf("Your String %s\n", p);
+
+	i = 0;
+	while (*(p + i) != '\0')
+	{
+		while (*(p + i) == ' ')
+		{
+			i++;
+		}
+		while (*(p + i) != ' ' && *(p + i) != '\0')
+		{
+			printf("%c", *(p + i));
+			i++;
+			if (*(p + i) == ' ')
+			{
+				k = i;
+				while (*(p + k) == ' ')
+				{
+					k++;
+				}
+				if (*(p + k) == '\0')
+					break;
+				printf("$");
+			}
+		}
+	}
+}
+
+OUTPUT:
+Enter String
+     India  Is   My    Country
+Your String      India  Is   My    Country
+India$Is$My$Country
+********************************
+13. Write a program in C to separate odd and even integers in 
+same array. (Using Dynamic Memory Allocation)
+#include<stdio.h>
+#include<stdlib.h>
+void main()
+{
+	int* p = NULL;
+	int n, i;
+	printf("please enter how many elements you want\n");
+	scanf_s("%d", &n);
+	p = (int*)malloc(n * sizeof(int));
+	printf("please enter the array elements\n");
+	for (i = 0; i < n; i++)
+	{
+		scanf_s("%d", p + i);
+	}
+	printf("array elements are\n");
+	for (i = 0; i < n; i++)
+	{
+		printf("%d\n", *(p + i));
+	}
+	printf("sorted array is\n");
+	for (i = 0; i < n; i++)
+	{
+		if (*(p+i) % 2 != 0)
+		{
+			printf("%d\n", *(p + i));
+		}
+	}
+	for (i = 0; i < n; i++)
+	{
+		if (*(p + i) % 2 == 0)
+		{
+			printf("%d\n", *(p + i));
+		}
+	}
+}
+
+output:
+
+please enter how many elements you want
+8
+please enter the array elements
+11
+25
+33
+42
+57
+68
+71
+80
+array elements are
+11
+25
+33
+42
+57
+68
+71
+80
+sorted array is
+11
+25
+33
+57
+71
+42
+68
+80
+
+********************************
+14. Write a program which accept sentence from user and print number of 
+words from that sentence. (Using Dynamic Memory Allocation)
+#include<stdio.h>
+
+#include<stdlib.h>
+void main()
+{
+	int size = 1, i = 0, count=0;
+
+	char ch;
+
+	char* p = NULL;
+
+	p = (char*)malloc(sizeof(char));
+	*p = '\0';
+
+	printf("Enter String\n");
+
+	do
+	{
+		scanf_s("%c", &ch);
+		if (ch != '\n')
+		{
+			size++;
+			p = (char*)realloc(p, size * sizeof(char));
+			*(p + i) = ch;
+			*(p + i + 1) = '\0';
+			i++;
+		}
+
+	} while (ch != '\n');
+	printf("Your String %s\n", p);
+
+	i = 0;
+	while (*(p+i) != '\0')
+	{
+		if (*(p + i) == ' ')
+		{
+			i++;
+		}
+		if (*(p + i) != ' ')
+		{
+			//printf("%c", str[i]);
+			if (*(p + i+1) == ' ' || (*(p + i) != ' ' && *(p + i+1) == '\0'))
+			{
+				count++;
+			}
+
+		}
+		i++;
+	}
+
+	printf("There are %d words in string", count);
+}
+
+OUTPUT:
+Enter String
+   india    is   my   country
+Your String    india    is   my   country
+There are 4 words in string
+******************************
+15. Write a program in C to print all unique elements in an array.
+(Using Dynamic Memory Allocation)
+#include<stdio.h>
+
+void main()
+{
+	int* n = NULL;
+	int* p = NULL;
+	int i,k, count=0;
+	printf("Enter How Many Element\n");
+	n = (int*)malloc(sizeof(int));
+	scanf_s("%d", n);
+
+	printf("Enter Array Element\n");
+
+	p = (int*)malloc(*n * sizeof(int));
+	for (i = 0; i < *n; i++)
+	{
+		scanf_s("%d", p + i);
+	}
+
+	printf("Array Element Are\n");
+	for (i = 0; i < *n; i++)
+	{
+		printf("%d\n", *(p + i));
+	}
+	printf("unique Element are:\n");
+	for (i = 0; i < *n; i++)
+	{
+		for (k = 0; k < *n; k++)
+		{
+			if (*(p + i) == *(p + k))
+			{
+				count++;
+			}
+		}
+		if (count == 1)
+			printf("%d\n", *(p + i));
+		count = 0;
+	}
+
+}
+
+OUTPUT:
+Enter How Many Element
+5
+Enter Array Element
+1
+1
+2
+1
+1
+Array Element Are
+1
+1
+2
+1
+1
+unique Element are:
+2
+*********************************
+16. Write a C program to replace Good names in mail.
+Eg:
+Raw String: Hello GoodName
+Input String: India
+Output String: Hello India
+Input String: Sangamner
+Output String: Hello Sangamner
+Input String: technOrbit
+Output String: Hello technOrbit
+#include<stdio.h>
+
+#include<stdlib.h>
+void main()
+{
+	int size = 1, i = 0,j;
+	char str[100] = "Hellow GoodName";
+	char ch;
+
+	char* p = NULL;
+
+	p = (char*)malloc(sizeof(char));
+	*p = '\0';
+
+	printf("Enter String\n");
+
+	do
+	{
+		scanf_s("%c", &ch);
+		if (ch != '\n')
+		{
+			size++;
+			p = (char*)realloc(p, size * sizeof(char));
+			*(p + i) = ch;
+			*(p + i + 1) = '\0';
+			i++;
+		}
+
+	} while (ch != '\n');
+	printf("Your String %s\n", p);
+
+	printf("Output string\n");
+	i = 0;
+	j = 0;
+	while (str[i] != '\0')
+	{
+		while (str[i] != ' ')
+		{
+			i++;
+			if (str[i] == ' ')
+			{
+				i++;
+				break;
+			}
+
+		}
+		while (*(p + j) != '\0')
+		{
+			str[i] = *(p + j);
+			i++;
+			j++;
+
+			if (*(p + j) == '\0')
+			{
+				str[i] = '\0';
+			}
+
+
+		}
+
+	}
+
+	printf("%s", str);
+
+
+}
+OUTPUT:
+Enter String
+Sangamner
+Your String Sangamner
+Output string
+Hellow Sangamner
+**********************************
+17. Write a program in C to insert New value in the array (sorted 
+list ). (Using Dynamic Memory Allocation)
+
+#include<stdio.h>
+
+void main()
+{
+	int* p = NULL;
+	int* n = NULL;
+	int* nv = NULL;
+	int i,k,temp;
+	printf("How many Element You want\n");
+	n = (int*)malloc(sizeof(int));
+	scanf_s("%d", n);
+
+	printf("Enter Array Element\n");
+
+	p = (int*)malloc(*n * sizeof(int));
+	for (i = 0; i < *n; i++)
+	{
+		scanf_s("%d", p + i);
+	}
+	printf("Array Element\n");
+	for (i = 0; i < *n; i++)
+	{
+		printf("%d\n", *(p + i));
+	}
+
+	printf("Enter Element You Want to Add In to The Array\n");
+
+	nv = (int*)malloc(sizeof(int));
+	scanf_s("%d", nv);
+
+	p = (int*)realloc(p, (*n + 1) * sizeof(int));
+	*(p + *n) = *nv;
+
+	for (i = 0; i < *n + 1; i++)
+	{
+		for (k = i + 1; k < *n + 1; k++)
+		{
+			if (*(p + i) > *(p + k))
+			{
+				temp = *(p + i);
+				*(p + i) = *(p + k);
+				*(p + k) = temp;
+			}
+		}
+	}
+
+	printf("Answer\n");
+	for (i = 0; i < *n + 1; i++)
+	{
+		printf("%d\n", *(p + i));
+	}
+
+}
+OUTPUT:
+How many Element You want
+5
+Enter Array Element
+1
+2
+3
+4
+5
+Array Element
+1
+2
+3
+4
+5
+Enter Element You Want to Add In to The Array
+6
+Answer
+1
+2
+3
+4
+5
+6
+*********************************
+18. Write a C program to print all fibonacci series upto each ASCII code of 
+aphabates in given string. (Using Dynamic Memory Allocation)
+#include<stdio.h>
+
+#include<stdlib.h>
+void main()
+{
+	int size = 1, i = 0, j, a = 0, b = 1, c, d, n = 0;
+
+	char ch;
+
+	char* p = NULL;
+
+	p = (char*)malloc(sizeof(char));
+	*p = '\0';
+
+	printf("Enter String\n");
+
+	do
+	{
+		scanf_s("%c", &ch);
+		if (ch != '\n')
+		{
+			size++;
+			p = (char*)realloc(p, size * sizeof(char));
+			*(p + i) = ch;
+			*(p + i + 1) = '\0';
+			i++;
+		}
+
+	} while (ch != '\n');
+	printf("%s\n", p);
+	i = 0;
+	while (*(p + i) != '\0')
+	{
+		if (*(p + i) == ' ')
+		{
+			i++;
+		}
+		if (*(p + i) != ' ')
+		{
+			d = *(p + i);
+			printf("%d\n", *(p + i));
+			printf("%d %d", a, b);
+
+			while (n <= d)
+			{
+
+				c = a + b;
+				if (c < d)
+				{
+					printf(" %d ", c);
+				}
+
+				a = b;
+				b = c;
+				n = c;
+			}
+			printf("\n");
+			a = 0;
+			b = 1;
+			n = 0;
+			i++;
+		}
+
+	}
+
+}
+OUTPUT:
+Enter String
+India Is My Country
+India Is My Country
+73
+0 1 1  2  3  5  8  13  21  34  55
+110
+0 1 1  2  3  5  8  13  21  34  55  89
+100
+0 1 1  2  3  5  8  13  21  34  55  89
+105
+0 1 1  2  3  5  8  13  21  34  55  89
+97
+0 1 1  2  3  5  8  13  21  34  55  89
+73
+0 1 1  2  3  5  8  13  21  34  55
+115
+0 1 1  2  3  5  8  13  21  34  55  89
+77
+0 1 1  2  3  5  8  13  21  34  55
+121
+0 1 1  2  3  5  8  13  21  34  55  89
+67
+0 1 1  2  3  5  8  13  21  34  55
+111
+0 1 1  2  3  5  8  13  21  34  55  89
+117
+0 1 1  2  3  5  8  13  21  34  55  89
+110
+0 1 1  2  3  5  8  13  21  34  55  89
+116
+0 1 1  2  3  5  8  13  21  34  55  89
+114
+0 1 1  2  3  5  8  13  21  34  55  89
+121
+0 1 1  2  3  5  8  13  21  34  55  89
+*********************************
+19. Write a program in C to delete an element at desired position 
+from an array. (Using Dynamic Memory Allocation)
+#include<stdio.h>
+
+void main()
+{
+	int* p = NULL;
+	int* n = NULL;
+	int* a = NULL;
+	int i;
+	printf("How many Element You want\n");
+	n = (int*)malloc(sizeof(int));
+	scanf_s("%d", n);
+
+	printf("Enter Array Element\n");
+
+	p = (int*)malloc(*n * sizeof(int));
+	for (i = 0; i < *n; i++)
+	{
+		scanf_s("%d", p + i);
+	}
+	printf("Array Element\n");
+	for (i = 0; i < *n; i++)
+	{
+		printf("%d\n", *(p + i));
+	}
+
+	printf("Enter Element Position:\n");
+	a = (int*)malloc(sizeof(int));
+	scanf_s("%d", a);
+
+	printf("Array After Delete Element Element:\n");
+	for (i = *a; i < *n - 1; i++)
+	{
+		*(p + i) = *(p + i+1);
+
+	}
+	p = (int*)realloc(p, (*n - 1) * sizeof(int));
+
+	printf("Answer\n");
+	for (i = 0; i < *n - 1; i++)
+	{
+		printf("%d\n", *(p + i));
+	}
+	free(p);
+	free(n);
+	free(a);
+
+}
+OUTPUT:
+How many Element You want
+5
+Enter Array Element
+1
+2
+3
+4
+5
+Array Element
+1
+2
+3
+4
+5
+Enter Element Position:
+3
+Array After Delete Element Element:
+Answer
+1
+2
+3
+5
+*********************************
+20. Write a C program which accepts a string from user which contains a 
+characters from ‘b’ to ‘y’. (Using Dynamic Memory Allocation)
+Eg:
+Input String: mn jn kn kazfd
+Output String: mn jn kn k
+#include<stdio.h>
+
+#include<stdlib.h>
+void main()
+{
+	int size = 1, i = 0;
+
+	char ch;
+
+	char* p = NULL;
+
+	p = (char*)malloc(sizeof(char));
+	*p = '\0';
+
+	printf("Enter String\n");
+
+	do
+	{
+		scanf_s("%c", &ch);
+		if (ch != '\n')
+		{
+			size++;
+			p = (char*)realloc(p, size * sizeof(char));
+			*(p + i) = ch;
+			*(p + i + 1) = '\0';
+			i++;
+		}
+
+	} while (ch != '\n');
+	printf("%s\n", p);
+	i = 0;
+
+	printf("Output String\n");
+	while (*(p + i) != '\0')
+	{
+		if (*(p + i) == ' ' || *(p + i) == 'a' || *(p + i) == 'z' || *(p + i) == 'A' || *(p + i) == 'Z')
+		{
+			if (*(p + i) != ' ' && *(p + i+1) == ' ')
+				printf(" ");
+			i++;
+		}
+		else
+		{
+			printf("%c", *(p + i));
+			if (*(p + i) != ' ' && *(p + i+1) == ' ')
+				printf(" ");
+			i++;
+		}
+
+	}
+
+}
+OUTPUT:
+Enter String
+India Is My Country
+India Is My Country
+Output String
+Indi Is My Country
+*********************************
+21.Write a C program which accept sentence from user and print number of 
+small letters, capital (Using Dynamic Memory Allocation)
+letters, Spaces and digits from that sentence.
+Eg:
+Input String: abcDE 5Glm1 O
+Output String: Small: 5 Capital: 4 Digits: 2 Spaces: 2
+#include<stdio.h>
+
+#include<stdlib.h>
+void main()
+{
+	int size = 1, i = 0, space = 0, small = 0, capital = 0, digit = 0;
+
+	char ch;
+
+	char* p = NULL;
+
+	p = (char*)malloc(sizeof(char));
+	*p = '\0';
+
+	printf("Enter String\n");
+
+	do
+	{
+		scanf_s("%c", &ch);
+		if (ch != '\n')
+		{
+			size++;
+			p = (char*)realloc(p, size * sizeof(char));
+			*(p + i) = ch;
+			*(p + i + 1) = '\0';
+			i++;
+		}
+
+	} while (ch != '\n');
+	printf("%s\n", p);
+	i = 0;
+	while (*(p + i) != '\0')
+	{
+		if (*(p + i) == ' ')
+		{
+			space++;
+		}
+		else if (*(p + i) >= 'a' && *(p + i) <= 'z')
+		{
+			small++;
+		}
+		else if (*(p + i) >= 'A' && *(p + i) <= 'Z')
+		{
+			capital++;
+		}
+		else if (*(p + i) >= '0' && *(p + i) <= '9')
+		{
+			digit++;
+		}
+		i++;
+	}
+	printf("In Given String space=%d,small=%d,capital=%d,digit=%d", space, small, capital, digit);
+
+}
+OUTPUT:
+Enter String
+India Is My Country
+India Is My Country
+In Given String space=3,small=12,capital=4,digit=0
+*********************************
+22. Write a program in C to find the maximum / minimum element 
+in an array. (Using Dynamic Memory Allocation)
+#include<stdio.h>
+#include<stdlib.h>
+void main()
+{
+	int* p = NULL;
+	int n, i, min, max ;
+	printf("please enter how many elements you want\n");
+	scanf_s("%d", &n);
+	p = (int*)malloc(n * sizeof(int));
+	printf("please enter the array elements\n");
+	for (i = 0; i < n; i++)
+	{
+		scanf_s("%d", p + i);
+	}
+	printf("array elements are\n");
+	for (i = 0; i < n; i++)
+	{
+		printf("%d\n", *(p + i));
+	}
+	max = *(p+0);
+	min = *(p+0);
+	for (i = 1; i < n; i++)
+	{
+		if (max < *(p+i))
+		{
+			max = *(p + i);
+		}
+		if (min > *(p + i))
+		{
+			min = *(p + i);
+		}
+	}
+	printf("max=%d", max);
+	printf("min=%d", min);
+}
+
+output:
+please enter how many elements you want
+5
+please enter the array elements
+11
+2
+36
+89
+5
+array elements are
+11
+2
+36
+89
+5
+max=89min=2
+*********************************
+23.Write a C program which accept sentence from user and print number of 
+white spaces from that sentence. (Using Dynamic Memory Allocation)
+Eg:
+Input String: India is my country
+Output: 3
+#include<stdio.h>
+
+#include<stdlib.h>
+void main()
+{
+	int size = 1, i = 0, space = 0;
+
+	char ch;
+
+	char* p = NULL;
+
+	p = (char*)malloc(sizeof(char));
+	*p = '\0';
+
+	printf("Enter String\n");
+
+	do
+	{
+		scanf_s("%c", &ch);
+		if (ch != '\n')
+		{
+			size++;
+			p = (char*)realloc(p, size * sizeof(char));
+			*(p + i) = ch;
+			*(p + i + 1) = '\0';
+			i++;
+		}
+
+	} while (ch != '\n');
+	printf("%s\n", p);
+	i = 0;
+	while (*(p + i) != '\0')
+	{
+		if (*(p + i) != ' ')
+		{
+			i++;
+		}
+		else if (*(p + i) == ' ')
+		{
+			space++;
+			i++;
+		}
+
+	}
+	printf("In Given String space are =%d", space);
+
+}
+OUTPUT:
+Enter String
+    India   Is   MY   Country
+    India   Is   MY   Country
+In Given String space are =16
+*********************************
+24. Write a program in C to find the second largest element in an 
+array. (Using Dynamic Memory Allocation)
+#include<stdio.h>
+
+void main()
+{
+	int* p = NULL;
+	int* n = NULL;
+	int i,max,max1=0;
+	printf("How many Element You want\n");
+	n = (int*)malloc(sizeof(int));
+	scanf_s("%d", n);
+
+	printf("Enter Array Element\n");
+
+	p = (int*)malloc(*n * sizeof(int));
+	for (i = 0; i < *n; i++)
+	{
+		scanf_s("%d", p + i);
+	}
+	printf("Array Element\n");
+	for (i = 0; i < *n; i++)
+	{
+		printf("%d\n", *(p + i));
+	}
+
+	max = *(p + 0);
+	for (i = 0; i <*n; i++)
+	{
+		if (*(p + i) > max)
+		{
+			max1 = max;
+			max = *(p + i);
+		}
+		else if (*(p + i) > max1 && *(p + i) < max)
+		{
+			max1 = *(p + i);
+		}
+	}
+	printf("second maximum no:%d\n", max1);
+
+	free(p);
+	free(n);
+	
+
+}
+OUTPUT:
+How many Element You want
+5
+Enter Array Element
+1
+2
+3
+4
+5
+Array Element
+1
+2
+3
+4
+5
+second maximum no:4
+************************************
+25.Write a C program which accept sentence from user and print number of 
+words of even and odd length from that sentence. (Using Dynamic Memory 
+Allocation)
+Eg:
+Input String: India is my country. I love my country.
+Output : Even: 5 Odd: 2
+#include<stdio.h>
+
+#include<stdlib.h>
+void main()
+{
+	int size = 1, i = 0, count = 0, even = 0, odd = 0;
+
+	char ch;
+
+	char* p = NULL;
+
+	p = (char*)malloc(sizeof(char));
+	*p = '\0';
+
+	printf("Enter String\n");
+
+	do
+	{
+		scanf_s("%c", &ch);
+		if (ch != '\n')
+		{
+			size++;
+			p = (char*)realloc(p, size * sizeof(char));
+			*(p + i) = ch;
+			*(p + i + 1) = '\0';
+			i++;
+		}
+
+	} while (ch != '\n');
+	printf("%s\n", p);
+	i = 0;
+	while (*(p + i) != '\0')
+	{
+		if (*(p + i) == ' ')
+		{
+			i++;
+		}
+		while (*(p + i) != ' ' && *(p + i) != '\0')
+		{
+			count++;
+
+			i++;
+		}
+
+		if (count % 2 == 0)
+		{
+			even++;
+		}
+		else
+		{
+			odd++;
+		}
+		count = 0;
+
+	}
+	printf("In Given String even words are =%d and odd words are =%d", even, odd);
+
+}
+OUTPUT:
+Enter String
+India Is My Country
+India Is My Country
+In Given String even words are =2 and odd words are =2
+************************************
+26. Write a C Program to Find the Number of Elements in an Array
+(Using Dynamic Memory Allocation)
+#include<stdio.h>
+
+void main()
+{
+	int* p = NULL;
+	int* n = NULL;
+	int i,count=0;
+	printf("How many Element You want\n");
+	n = (int*)malloc(sizeof(int));
+	scanf_s("%d", n);
+
+	printf("Enter Array Element\n");
+
+	p = (int*)malloc(*n * sizeof(int));
+	for (i = 0; i < *n; i++)
+	{
+		scanf_s("%d", p + i);
+	}
+	printf("Array Element\n");
+	for (i = 0; i < *n; i++)
+	{
+		printf("%d\n", *(p + i));
+	}
+
+	for(i = 0; i < *n; i++)
+	{
+		count++;
+
+	}
+
+	printf("%d Element in Array.", count);
+
+	free(p);
+	free(n);
+	
+
+}
+OUTPUT:
+How many Element You want
+5
+Enter Array Element
+1
+2
+3
+4
+5
+Array Element
+1
+2
+3
+4
+5
+5 Element in Array.
+*********************************
+27.Write a C program which accept sentence from user and print last word 
+from that sentence. (Using Dynamic Memory Allocation)
+Eg:
+Input String: India is my country
+Output String: country
+#include<stdio.h>
+
+#include<stdlib.h>
+void main()
+{
+	int size = 1, i = 0,j;
+
+	char ch;
+
+	char* p = NULL;
+
+	p = (char*)malloc(sizeof(char));
+	*p = '\0';
+
+	printf("Enter String\n");
+
+	do
+	{
+		scanf_s("%c", &ch);
+		if (ch != '\n')
+		{
+			size++;
+			p = (char*)realloc(p, size * sizeof(char));
+			*(p + i) = ch;
+			*(p + i + 1) = '\0';
+			i++;
+		}
+
+	} while (ch != '\n');
+	printf("%s\n", p);
+	i = 0;
+
+	while (*(p + i) != '\0')
+	{
+		if (*(p + i) != ' ' || *(p + i) == ' ')
+		{
+			i++;
+			if (*(p + i) == '\0')
+				break;
+		}
+	}
+	while (*(p + i) == ' ' || *(p + i) != ' ')
+	{
+		i--;
+		if (*(p + i) != ' ' && *(p + i-1) == ' ')
+		{
+			while (*(p + i) != '\0')
+			{
+				printf("%c", *(p + i));
+				i++;
+			}
+			break;
+		}
+
+
+	}
+
+}
+OUTPUT:
+Enter String
+India Is My Country
+India Is My Country
+Country
+*********************************
+28. Write a C Program to Check Array bounds while Inputing 
+Elements into the Array (Using Dynamic Memory Allocation)
+#include<stdio.h>
+
+void main()
+{
+	int* p = NULL;
+	int* n = NULL;
+	int i;
+	printf("How many Element You want\n");
+	n = (int*)malloc(sizeof(int));
+	scanf_s("%d", n);
+
+	printf("Enter Array Element\n");
+
+	p = (int*)malloc(*n * sizeof(int));
+	
+
+	{
+		for (i = 0; i < 100; i++)
+		{
+			if (i < *n)
+			{
+				scanf_s("%d", p+i);
+			}
+			else
+			{
+				printf("Array Out of Bound.\n");
+				break;
+			}
+
+		}
+	}
+
+
+	free(p);
+	free(n);
+	
+
+}
+
+OUTPUT:
+How many Element You want
+5
+Enter Array Element
+1
+2
+3
+4
+5
+Array Out of Bound.
+**********************************
+29.Write a C program which accept sentence from user and position from user 
+and print the word at that position. (Using Dynamic Memory Allocation)
+Eg:
+Input String: India is my country
+Input Position: 3
+Output String: my
+#include<stdio.h>
+
+#include<stdlib.h>
+void main()
+{
+	int size = 1, i = 0,j,count=0;
+
+	char ch;
+
+	char* p = NULL;
+	int* n = NULL;
+
+	p = (char*)malloc(sizeof(char));
+	*p = '\0';
+
+	printf("Enter String\n");
+
+	do
+	{
+		scanf_s("%c", &ch);
+		if (ch != '\n')
+		{
+			size++;
+			p = (char*)realloc(p, size * sizeof(char));
+			*(p + i) = ch;
+			*(p + i + 1) = '\0';
+			i++;
+		}
+
+	} while (ch != '\n');
+	printf("%s\n", p);
+
+	printf("Enter Position\n");
+	n = (int*)malloc(sizeof(int));
+	scanf_s("%d", n);
+	i = 0;
+
+	while (*(p + i) != '\0')
+	{
+		if (*(p + i) != ' ' || *(p + i) == ' ')
+		{
+			i++;
+			j = i;
+		}
+		if ((*(p + i) != ' ' && *(p + i+1) == ' ') || (*(p + i) != ' ' && *(p + i+1) == '\0'))
+		{
+			count++;
+
+			if (count == *n)
+				break;
+		}
+	}
+	while (*(p + i) == ' ' || *(p + i) != ' ')
+	{
+		i--;
+		if (*(p + i) != ' ' && * (p + i-1) == ' ')
+		{
+			while (*(p + i) != '\n')
+			{
+				if (*(p + i) == ' ')
+				{
+					break;
+				}
+				printf("%c", *(p + i));
+				i++;
+			}
+			break;
+		}
+	}
+
+}
+OUTPUT:
+Enter String
+India Is My Country
+India Is My Country
+Enter Position
+3
+My
+**********************************
+30. Write a C Program to Print the Alternate Elements in an Array
+(Using Dynamic Memory Allocation)
+#include<stdio.h>
+
+void main()
+{
+	int* p = NULL;
+	int* n = NULL;
+	int i;
+	printf("How many Element You want\n");
+	n = (int*)malloc(sizeof(int));
+	scanf_s("%d", n);
+
+	printf("Enter Array Element\n");
+
+	p = (int*)malloc(*n * sizeof(int));
+
+	for (i = 0; i < *n; i++)
+	{
+		scanf_s("%d", p+i);
+	}
+	printf("Array Element\n");
+	for (i = 0; i < *n; i++)
+	{
+		printf("%d\n", *(p+i));
+
+	}
+	printf("Alternet Array Element\n");
+	i = 0;
+	while (i < *n)
+	{
+		printf("%d\n", *(p+i));
+		i = i + 2;
+	}
+
+	free(p);
+	free(n);
+	
+
+}
+OUTPUT:
+How many Element You want
+5
+Enter Array Element
+1
+2
+3
+4
+5
+Array Element
+1
+2
+3
+4
+5
+Alternet Array Element
+1
+3
+5
+****************************
+31.Write a C program to convert the string from upper case to lower case.
+(Using Dynamic Memory Allocation)
+Eg:
+Input String: India Is My Country
+Output String: india is my country
+#include<stdio.h>
+
+#include<stdlib.h>
+void main()
+{
+	int size = 1, i = 0;
+
+	char ch;
+
+	char* p = NULL;
+
+	p = (char*)malloc(sizeof(char));
+	*p = '\0';
+
+	printf("Enter String\n");
+
+	do
+	{
+		scanf_s("%c", &ch);
+		if (ch != '\n')
+		{
+			size++;
+			p = (char*)realloc(p, size * sizeof(char));
+			*(p + i) = ch;
+			*(p + i + 1) = '\0';
+			i++;
+		}
+
+	} while (ch != '\n');
+	printf("%s\n", p);
+	i = 0;
+	while (*(p + i) != '\0')
+	{
+		if (*(p + i) == ' ')
+		{
+			i++;
+		}
+		else if (*(p + i) != ' ')
+		{
+			if (*(p + i) >= 'A' && *(p + i) <= 'Z')
+			{
+				*(p + i) = *(p + i) + 32;
+				i++;
+			}
+			else
+			{
+				i++;
+			}
+		}
+	}
+
+	printf("Output String\n");
+
+	printf("%s", p);
+
+}
+OUTPUT:
+Enter String
+India Is My Country
+India Is My Country
+Output String
+india is my country
+****************************
+32. Write a C Program to Find 2 Elements in the Array such that 
+Difference between them is Largest(Using Dynamic Memory 
+Allocation)
+#include<stdio.h>
+
+void main()
+{
+	int* p = NULL;
+	int* n = NULL;
+	int i,k,difference=0,sub=0,a,b;
+	printf("How many Element You want\n");
+	n = (int*)malloc(sizeof(int));
+	scanf_s("%d", n);
+
+	printf("Enter Array Element\n");
+
+	p = (int*)malloc(*n * sizeof(int));
+
+	for (i = 0; i < *n; i++)
+	{
+		scanf_s("%d", p+i);
+	}
+	printf("Array Element\n");
+	for (i = 0; i < *n; i++)
+	{
+		printf("%d\n", *(p+i));
+
+	}
+	for (i = 0; i < *n; i++)
+	{
+		for (k = 0; k < *n; k++)
+		{
+			sub = *(p + i) - *(p + k);
+
+			if (sub > difference)
+			{
+				difference = sub;
+				a = *(p + i);
+				b = *(p + k);
+			}
+			sub = 0;
+		}
+
+	}
+	printf("Largest Difference values are:%d and %d\n", a, b);
+
+	free(p);
+	free(n);
+	
+
+}
+OUTPUT:
+How many Element You want
+5
+Enter Array Element
+1
+2
+3
+4
+5
+Array Element
+1
+2
+3
+4
+5
+Largest Difference values are:5 and 1
+**********************************
+33.Write a C program which toggles the case of a string. (Using Dynamic 
+Memory Allocation)
+Eg:
+Input String: technOrbit Infosystems
+Output String: TECHNoRBIT iNFOSYSTEMS
+#include<stdio.h>
+
+#include<stdlib.h>
+void main()
+{
+	int size = 1, i = 0;
+
+	char ch;
+
+	char* p = NULL;
+
+	p = (char*)malloc(sizeof(char));
+	*p = '\0';
+
+	printf("Enter String\n");
+
+	do
+	{
+		scanf_s("%c", &ch);
+		if (ch != '\n')
+		{
+			size++;
+			p = (char*)realloc(p, size * sizeof(char));
+			*(p + i) = ch;
+			*(p + i + 1) = '\0';
+			i++;
+		}
+
+	} while (ch != '\n');
+	printf("%s\n", p);
+	i = 0;
+	while (*(p + i) != '\0')
+	{
+		if (*(p + i) == ' ')
+		{
+			i++;
+		}
+		else if (*(p + i) != ' ')
+		{
+			if (*(p + i) >= 'A' && *(p + i) <= 'Z')
+			{
+				*(p + i) = *(p + i) + 32;
+				i++;
+			}
+			else if (*(p + i) >= 'a' && *(p + i) <= 'z')
+			{
+				*(p + i) = *(p + i) - 32;
+				i++;
+			}
+		}
+	}
+
+	printf("Output String\n");
+
+	printf("%s", p);
+
+}
+OUTPUT:
+Enter String
+India Is My Country
+India Is My Country
+Output String
+iNDIA iS mY cOUNTRY
+
+**********************************
+34. Write a C Program to Input a String & Store their Ascii Values in 
+an Integer Array (Using Dynamic Memory Allocation)
+
+#include<stdio.h>
+
+#include<stdlib.h>
+void main()
+{
+	int size = 1, i = 0;
+	char ch;
+	char* p = NULL;
+	p = (char*)malloc(sizeof(char));
+	*p = '\0';
+
+	printf("Enter first String\n");	
+	do
+	{
+		scanf_s("%c", &ch);
+		if (ch != '\n')
+		{
+			size++;
+			p = (char*)realloc(p, size * sizeof(char));
+			*(p + i) = ch;
+			*(p + i + 1) = '\0';
+			i++;
+		}
+
+	} while (ch != '\n');
+	printf("%s\n", p);
+	for (i = 0; *(p + i) != '\0'; i++)
+	{
+		printf("%c = %d\n", *(p + i), *(p + i));
+	}
+}
+
+
+OUTPUT:
+Enter first String
+India
+India
+I = 73
+n = 110
+d = 100
+i = 105
+a = 97
+**********************************
+35. Write a C program to check whether given strings are Anagram strings or 
+not. (Using Dynamic Memory Allocation)**************
+Eg:
+Input String1: abccd
+Input String2: cbcda
+Output String: Strings are anagram
+
+#include<stdio.h>
+
+#include<stdlib.h>
+void main()
+{
+	int size = 1, i = 0, j, count = 0, count1 = 0, flage = 0;
+
+	char ch;
+
+	char* p = NULL;
+	char* q = NULL;
+
+	p = (char*)malloc(sizeof(char));
+	*p = '\0';
+	q = (char*)malloc(sizeof(char));
+	*q = '\0';
+
+	printf("Enter first String\n");
+
+	do
+	{
+		scanf_s("%c", &ch);
+		if (ch != '\n')
+		{
+			size++;
+			p = (char*)realloc(p, size * sizeof(char));
+			*(p + i) = ch;
+			*(p + i + 1) = '\0';
+			i++;
+		}
+
+	} while (ch != '\n');
+	
+	
+	printf("Enter Second String\n");
+	i = 0;
+	do
+	{
+		scanf_s("%c", &ch);
+		if (ch != '\n')
+		{
+			size++;
+			q = (char*)realloc(q, size * sizeof(char));
+			*(q + i) = ch;
+			*(q + i + 1) = '\0';
+			i++;
+		}
+
+	} while (ch != '\n');
+
+	printf("First String %s\n", p);
+	printf("Second String %s\n", q);
+
+	i = 0;
+	while (*(p + i) != '\0')
+	{
+		count++;
+		i++;
+	}
+	//printf("%d", count);
+	i = 0;
+
+	while (*(p + i) != '\0')
+	{
+		j = 0;
+		while (*(q + i) != '\0')
+		{
+			if (*(p + i) == *(q + i))
+			{
+				flage = 1;
+				count1++;
+				break;
+
+			}
+			j++;
+		}
+		if (flage == 0)
+		{
+			printf("String is not anagram");
+		}
+		flage = 0;
+
+
+		i++;
+	}
+	if (count == count1)
+	{
+		printf("String is anagram");
+	}
+
+}
+***********************************
+36. Write a C program to store squares of the elements in the same 
+array (Using Dynamic Memory Allocation)
+#include<stdio.h>
+
+void main()
+{
+	int* p = NULL;
+	int* n = NULL;
+	int i,k,difference=0,sub=0,a,b;
+	printf("How many Element You want\n");
+	n = (int*)malloc(sizeof(int));
+	scanf_s("%d", n);
+
+	printf("Enter Array Element\n");
+
+	p = (int*)malloc(*n * sizeof(int));
+
+	for (i = 0; i < *n; i++)
+	{
+		scanf_s("%d", p+i);
+	}
+	printf("Array Element\n");
+	for (i = 0; i < *n; i++)
+	{
+		printf("%d\n", *(p+i));
+
+	}
+	printf("Squre of Array Element:\n");
+	for (i = 0; i < *n; i++)
+	{
+		printf("%d\n", *(p + i) * *(p + i));
+
+	}
+
+	free(p);
+	free(n);
+	
+
+}
+OUTPUT:
+How many Element You want
+5
+Enter Array Element
+1
+2
+3
+4
+5
+Array Element
+1
+2
+3
+4
+5
+Squre of Array Element:
+1
+4
+9
+16
+25
+*******************************
+37.Write a C program which accept string from user and copy that string into 
+some another string. (Using Dynamic Memory Allocation)
+#include<stdio.h>
+
+#include<stdlib.h>
+void main()
+{
+	int size = 1, i = 0,j;
+
+	char ch;
+
+	char* p = NULL;
+	char* q = NULL;
+	p = (char*)malloc(sizeof(char));
+	*p = '\0';
+	q = (char*)malloc(sizeof(char));
+	*q = '\0';
+
+	printf("Enter first String\n");
+
+	do
+	{
+		scanf_s("%c", &ch);
+		if (ch != '\n')
+		{
+			size++;
+			p = (char*)realloc(p, size * sizeof(char));
+			*(p + i) = ch;
+			*(p + i + 1) = '\0';
+			i++;
+		}
+
+	} while (ch != '\n');
+
+	printf("String: %s\n", p);
+
+	i = 0;
+	j = 0;
+	while (*(p + i) != '\0')
+	{
+		if (*(p + i) == ' ' || *(p + i) != ' ')
+		{
+			if (*(p + i) == '\0')
+			{
+				break;
+			}
+			else
+			{
+				q = (char*)realloc(q, size * sizeof(char));
+				*(q + j) = *(p + i);
+				*(q + j + 1) = '\0';
+				i++;
+				j++;
+			}
+
+		}
+
+	}
+	printf("New String\n");
+	printf("%s", q);
+
+}
+OUTPUT:
+Enter first String
+India Is My Country
+String: India Is My Country
+New String
+India Is My Country
+*******************************
+38.Write a program which accept string from user and copy first N charaters 
+into some destination string. (Using Dynamic Memory Allocation)
+Eg:
+Input String: India is my country
+Input of N: 8
+Output String: India is
+#include<stdio.h>
+
+#include<stdlib.h>
+void main()
+{
+	int size = 1, i = 0,j;
+
+	char ch;
+
+	char* p = NULL;
+	char* q = NULL;
+	int* n = NULL;
+	p = (char*)malloc(sizeof(char));
+	*p = '\0';
+	q = (char*)malloc(sizeof(char));
+	*q = '\0';
+
+	printf("Enter first String\n");
+
+	do
+	{
+		scanf_s("%c", &ch);
+		if (ch != '\n')
+		{
+			size++;
+			p = (char*)realloc(p, size * sizeof(char));
+			*(p + i) = ch;
+			*(p + i + 1) = '\0';
+			i++;
+		}
+
+	} while (ch != '\n');
+
+	printf("String: %s\n", p);
+
+	printf("Enter position\n");
+	n = (int*)malloc(sizeof(int));
+	scanf_s("%d", n);
+	i = 0;
+
+	while (i <= *n)
+	{
+		printf("%c", *(p + i));
+		i++;
+
+	}
+
+}
+OUTPUT:
+Enter first String
+India Is My Country
+String: India Is My Country
+Enter position
+8
+India Is
+******************************
+39. Write C Program to Find the two Elements such that their Sum 
+is Closest to given number(Using Dynamic Memory Allocation)
+#include<stdio.h>
+
+void main()
+{
+	int* p = NULL;
+	int* n = NULL;
+	int* n1 = NULL;
+	int i,k,olddiff,diff,a=0,b=0,max=0,sum=0;
+	printf("How many Element You want\n");
+	n = (int*)malloc(sizeof(int));
+	scanf_s("%d", n);
+
+	printf("Enter Array Element\n");
+
+	p = (int*)malloc(*n * sizeof(int));
+
+	for (i = 0; i < *n; i++)
+	{
+		scanf_s("%d", p+i);
+		if (max < *(p + i))
+		{
+			max = *(p + i);
+		}
+	}
+	printf("Array Element\n");
+	for (i = 0; i < *n; i++)
+	{
+		printf("%d\n", *(p+i));
+
+	}
+	printf("Element to check\n");
+	n1 = (int*)malloc(sizeof(int));
+	scanf_s("%d", n1);
+	olddiff = max;
+	for (i = 0; i < *n; i++)
+	{
+		for (k = 0; k < *n; k++)
+		{
+			if (i == k)
+				continue;
+			sum = *(p + i) + *(p + k);
+			if (sum < *n1)
+			{
+				diff = *n1 - sum;
+				if (diff < olddiff)
+				{
+					olddiff = diff;
+					a = *(p + i);
+					b = *(p + k);
+				}
+			}
+		}
+	}
+	printf("sum of %d and %d closest to given Number %d", a, b, *n1);
+
+	free(p);
+	free(n);
+	free(n1);
+	
+
+}
+OUTPUT:
+How many Element You want
+5
+Enter Array Element
+23
+34
+45
+56
+67
+Array Element
+23
+34
+45
+56
+67
+Element to check
+100
+sum of 23 and 67 closest to given Number 100
+***********************************************
+40.Write a C program which accept string from user and accept number N then 
+copy last N character into some another string. (Using Dynamic Memory 
+Allocation)
+Eg:
+Input String: India is my country
+Input of N: 5
+Output String: is my
+#include<stdio.h>
+#include<stdlib.h>
+void main()
+{
+	int size = 1, i = 0, j = 0, pos, count = 0;
+	char ch;
+	char* str = NULL;
+	char* cpystr = NULL;
+	str = (char*)malloc(sizeof(char));
+	cpystr = (char*)malloc(sizeof(char));
+	str = '\0';
+	printf("please enter the string\n");
+	do
+	{
+		scanf_s("%c", &ch);
+		if (ch != '\n')
+		{
+			size++;
+			str = (char*)realloc(str, size * sizeof(char));
+
+			*(str + i) = ch;
+			*(str + i + 1) = '\0';
+			i++;
+		}
+	} while (ch != '\n');
+	//printf("%s", str);
+	printf("please enter last n position:\n");
+	scanf_s("%d", &pos);
+	i = 0;
+	while (*(str+i) != '\0')
+	{
+		i++;
+	}
+	j = i - 1;
+	while (count < pos)
+	{
+		count++;
+		j--;
+	}
+	while (count >= 0)
+	{
+		*(cpystr+i) = *(str + j + 1);
+		printf("%c", *(cpystr+i));
+		j++;
+		count--;
+	}
+	*(cpystr+i) = '\0';
+}
+
+output:
+please enter the string
+india is my country
+please enter last n position:
+5
+untry
+***********************************
+41. Write C Program to Find if a given Integer X appears more than 
+N/2 times in a Sorted Array of N Integers(Using Dynamic Memory 
+Allocation)
+#include<stdio.h>
+
+void main()
+{
+	int* p = NULL;
+	int* n = NULL;
+	int* x = NULL;
+	int i,k,temp,count=0;
+	printf("How many Element You want\n");
+	n = (int*)malloc(sizeof(int));
+	scanf_s("%d", n);
+
+	printf("Enter Array Element\n");
+
+	p = (int*)malloc(*n * sizeof(int));
+
+	for (i = 0; i < *n; i++)
+	{
+		scanf_s("%d", p+i);
+	}
+	printf("Array Element\n");
+	for (i = 0; i < *n; i++)
+	{
+		printf("%d\n", *(p+i));
+
+	}
+	printf("Element to check\n");
+	x = (int*)malloc(sizeof(int));
+	scanf_s("%d", x);
+	
+
+	for (i = 0; i < *n; i++)
+	{
+		for (k = i + 1; k < *n; k++)
+		{
+			if (*(p + i) > *(p + k))
+			{
+				temp = *(p + i);
+				*(p + i) = *(p + k);
+				*(p + k) = temp;
+			}
+		}
+	}
+	for (i = 0; i < *n; i++)
+	{
+		if (*(p + i) == *x)
+			count++;
+	}
+	if (count >= (*n / 2))
+	{
+		printf("Given Integer %d appears more than N/2 times in a Sorted Array", *x);
+	}
+	else
+	{
+		printf("Given Integer %d Not appears more than N/2 times in a Sorted Array", *x);
+	}
+
+	free(p);
+	free(n);
+	free(x);
+	
+
+}
+OUTPUT:
+How many Element You want
+5
+Enter Array Element
+1
+2
+1
+2
+1
+Array Element
+1
+2
+1
+2
+1
+Element to check
+1
+Given Integer 1 appears more than N/2 times in a Sorted Array
+**********************************
+42.Write a C program which accept two strings from user and append second 
+string after first string. (Using Dynamic Memory Allocation)
+Eg:
+Input String: India Country
+Output String: IndiaCountry
+#include<stdio.h>
+
+#include<stdlib.h>
+void main()
+{
+	int size = 1, i = 0,j;
+	char ch;
+	char* p = NULL;
+	char* q = NULL;
+	p = (char*)malloc(sizeof(char));
+	*p = '\0';
+	q = (char*)malloc(sizeof(char));
+	*q = '\0';
+
+	printf("Enter first String\n");	
+	do
+	{
+		scanf_s("%c", &ch);
+		if (ch != '\n')
+		{
+			size++;
+			p = (char*)realloc(p, size * sizeof(char));
+			*(p + i) = ch;
+			*(p + i + 1) = '\0';
+			i++;
+		}
+
+	} while (ch != '\n');
+	printf("%s\n", p);
+
+	printf("Enter second String\n");
+	i = 0;
+	do
+	{
+		scanf_s("%c", &ch);
+		if (ch != '\n')
+		{
+			size++;
+			q = (char*)realloc(q, size * sizeof(char));
+			*(q + i) = ch;
+			*(q + i + 1) = '\0';
+			i++;
+		}
+
+	} while (ch != '\n');
+	printf("%s\n", q);
+	i = 0;
+
+	while (*(p + i) != '\0')
+	{
+		i++;
+	}
+	while (i >= 0)
+	{
+		if (*(p + i) == ' ' || *(p + i) == '\n' || *(p + i) == '\0')
+		{
+			if (*(p + i-1) != ' ')
+			{
+				break;
+			}
+			i--;
+		}
+	}
+	j = 0;
+	while (*(q + j) != '\0')
+	{
+		p = (char*)realloc(p, size * sizeof(char));
+		*(p + i) = *(q + j);
+		*(p + i + 1) = '\0';
+		
+		i++;
+		j++;
+		if (*(q + j) == '\0')
+		{
+			break;
+
+		}
+	}
+
+	printf("Output String:%s", p);
+
+}
+OUTPUT:
+Enter first String
+India
+India
+Enter second String
+Country
+Country
+Output String:IndiaCountry
+*********************************
+43. Write C Program to Find Union & Intersection of 2 Arrays(Using 
+Dynamic Memory Allocation)
+Union:
+#include<stdio.h>
+
+#include<stdlib.h>
+
+void main()
+{
+	int* p = NULL;
+	int* q = NULL;
+	int* r = NULL;
+	int* n = NULL;
+	int i,size=1,count=0,k,a, flag = 0;
+	printf("Enter How Many Element You Want\n");
+	n = (int*)malloc(sizeof(int));
+	scanf_s("%d", n);
+	printf("Enter first Array Element\n");
+	p = (int*)malloc(*n * sizeof(int));
+
+	for (i = 0; i < *n; i++)
+	{
+		scanf_s("%d", p + i);
+	}
+	printf("Enter Second Array Element\n");
+	q = (int*)malloc(*n * sizeof(int));
+
+	for (i = 0; i < *n; i++)
+	{
+		scanf_s("%d", q + i);
+	}
+	r = (int*)malloc(sizeof(int));
+
+	printf("First Array Element Are\n");
+
+	for (i = 0; i < *n; i++)
+	{
+		printf("%d\n", *(p + i));
+	}
+	printf("Second Array Element Are\n");
+
+	for (i = 0; i < *n; i++)
+	{
+		printf("%d\n", *(q + i));
+	}
+	printf("union of Given two array\n");
+	a = 0;
+	for (i = 0; i < *n; i++)
+	{
+		r = (int*)realloc(r, size * sizeof(int));
+		*(r + a) = *(p + i);
+		
+		count++;
+		size++;
+		a++;
+	}
+	for (i = 0; i < *n; i++)
+	{
+		for (k = 0; k <*n; k++)
+		{
+			if (*(q + i) == *(p + k))
+			{
+				flag = 1;
+			}
+		}
+		if (flag == 0)
+		{
+			r = (int*)realloc(r, size * sizeof(int));
+			*(r + a) = *(q + i);
+			
+			count++;
+			size++;
+			a++;
+			
+		}
+		flag = 0;
+	}
+
+	for (i = 0; i < count; i++)
+	{
+		printf("%d\n", *(r + i));
+	}
+}
+OUTPUT:
+First Array Element Are
+1
+2
+3
+4
+5
+Second Array Element Are
+6
+7
+8
+9
+0
+union of Given two array
+1
+2
+3
+4
+5
+6
+7
+8
+9
+0
+***********
+Intersection:*************
+#include<stdio.h>
+
+#include<stdlib.h>
+
+void main()
+{
+	int* p = NULL;
+	int* q = NULL;
+	int* r = NULL;
+	int* n = NULL;
+	int i,size=1,count=0,k,a, flag = 0,j;
+	printf("Enter How Many Element You Want\n");
+	n = (int*)malloc(sizeof(int));
+	scanf_s("%d", n);
+	printf("Enter first Array Element\n");
+	p = (int*)malloc(*n * sizeof(int));
+
+	for (i = 0; i < *n; i++)
+	{
+		scanf_s("%d", p + i);
+	}
+	printf("Enter Second Array Element\n");
+	q = (int*)malloc(*n * sizeof(int));
+
+	for (i = 0; i < *n; i++)
+	{
+		scanf_s("%d", q + i);
+	}
+	r = (int*)malloc(sizeof(int));
+
+	printf("First Array Element Are\n");
+
+	for (i = 0; i < *n; i++)
+	{
+		printf("%d\n", *(p + i));
+	}
+	printf("Second Array Element Are\n");
+
+	for (i = 0; i < *n; i++)
+	{
+		printf("%d\n", *(q + i));
+	}
+	printf("union of Given two array\n");
+	printf("Intersection of Given two array\n");
+	a = 0;
+	for (i = 0; i < *n; i++)
+	{
+		for (k = 0; k < i; k++)
+		{
+
+			if (*(p + i) == *(p + k))
+			{
+				flag = 1;
+			}
+		}
+		if (flag == 0)
+		{
+			for (j = 0; j < n; j++)
+			{
+				if (*(p + i) == *(q + j))
+				{
+					r = (int*)realloc(r, size * sizeof(int));
+					*(r + a) = *(p + i);
+
+					count++;
+					size++;
+					a++;
+					break;
+				}
+			}
+		}
+		flag = 0;
+	}
+	printf("Array Element\n");
+	for (i = 0; i < count; i++)
+	{
+		printf("%d\n", *(r + i));
+	}
+}
+OUTPUT:
+Enter How Many Element You Want
+5
+Enter first Array Element
+1
+2
+3
+4
+5
+Enter Second Array Element
+3
+4
+5
+6
+7
+First Array Element Are
+1
+2
+3
+4
+5
+Second Array Element Are
+3
+4
+5
+6
+7
+union of Given two array
+Intersection of Given two array
+Array Element
+1
+2
+3
+4
+5
+********************************
+44.Write a C program which accept two strings from user and append N 
+characters of second string (Using Dynamic Memory Allocation)
+after first string.
+Eg:
+Input String: India Country
+Input of N: 4
+Output String: IndiaCoun
+#include<stdio.h>
+
+#include<stdlib.h>
+void main()
+{
+	int size = 1, i = 0,j;
+	char ch;
+	char* p = NULL;
+	char* q = NULL;
+	char* n = NULL;
+	p = (char*)malloc(sizeof(char));
+	*p = '\0';
+	q = (char*)malloc(sizeof(char));
+	*q = '\0';
+	n = (int*)malloc(sizeof(int));
+
+	printf("Enter first String\n");	
+	do
+	{
+		scanf_s("%c", &ch);
+		if (ch != '\n')
+		{
+			size++;
+			p = (char*)realloc(p, size * sizeof(char));
+			*(p + i) = ch;
+			*(p + i + 1) = '\0';
+			i++;
+		}
+
+	} while (ch != '\n');
+	printf("%s\n", p);
+
+	printf("Enter second String\n");
+	i = 0;
+	do
+	{
+		scanf_s("%c", &ch);
+		if (ch != '\n')
+		{
+			size++;
+			q = (char*)realloc(q, size * sizeof(char));
+			*(q + i) = ch;
+			*(q + i + 1) = '\0';
+			i++;
+		}
+
+	} while (ch != '\n');
+	printf("%s\n", q);
+	printf("Enter Position\n");
+	scanf_s("%d", n);
+	i = 0;
+
+	while (*(p + i) != '\0')
+	{
+		i++;
+	}
+	while (i >= 0)
+	{
+		if (*(p + i) == ' ' || *(p + i) == '\n' || *(p + i) == '\0')
+		{
+			if (*(p + i-1) != ' ')
+			{
+				break;
+			}
+			i--;
+		}
+	}
+	j = 0;
+	while (*(q + j) != '\0')
+	{
+		p = (char*)realloc(p, size * sizeof(char));
+		*(p + i) = *(q + j);
+		*(p + i + 1) = '\0';
+		
+		i++;
+		j++;
+		if (j==*n)
+		{
+			break;
+
+		}
+	}
+
+	printf("Output String:%s", p);
+
+}
+OUTPUT:
+Enter first String
+India
+India
+Enter second String
+Country
+Country
+Enter Position
+4
+Output String:IndiaCoun
+*****************************
+45.Write a C program which accept two strings from user and compare two 
+strings. If both strings are equal then return 0 otherwise return difference 
+between first mismatch character. (Using Dynamic Memory Allocation)
+Eg:
+Input String1: India is my country.
+Input String2: India is my country.
+Output: Both strings are equal
+#include<stdio.h>
+
+#include<stdlib.h>
+void main()
+{
+	int size = 1, i = 0,flage=0;
+	char ch;
+	char* p = NULL;
+	char* q = NULL;
+	
+	p = (char*)malloc(sizeof(char));
+	*p = '\0';
+	q = (char*)malloc(sizeof(char));
+	*q = '\0';
+	
+
+	printf("Enter first String\n");	
+	do
+	{
+		scanf_s("%c", &ch);
+		if (ch != '\n')
+		{
+			size++;
+			p = (char*)realloc(p, size * sizeof(char));
+			*(p + i) = ch;
+			*(p + i + 1) = '\0';
+			i++;
+		}
+
+	} while (ch != '\n');
+	printf("%s\n", p);
+
+	printf("Enter second String\n");
+	i = 0;
+	do
+	{
+		scanf_s("%c", &ch);
+		if (ch != '\n')
+		{
+			size++;
+			q = (char*)realloc(q, size * sizeof(char));
+			*(q + i) = ch;
+			*(q + i + 1) = '\0';
+			i++;
+		}
+
+	} while (ch != '\n');
+	printf("%s\n", q);
+	i = 0;
+	while (*(p + i) != '\0' && *(q + i) != '\0')
+	{
+		if (*(p + i) == *(q + i))
+		{
+			i++;
+			continue;
+		}
+		else if (*(p + i) < *(q + i))
+		{
+			flage = 1;
+			printf("1");
+			break;
+		}
+		else
+		{
+			flage = 1;
+			printf("-1");
+			break;
+		}
+	}
+	if (flage == 0)
+		printf("0");
+
+}
+OUTPUT:
+Enter first String
+India
+India
+Enter second String
+Country
+Country
+-1
+************************************
+46.Write a C program which accept two strings from user and compare only 
+first N characters of two strings. If both strings are equal till first N 
+characters then return 0 otherwise return difference between first 
+mismatch character. (Using Dynamic Memory Allocation)
+Eg:
+Input String1: Ramayan
+Input String2: Ramanacharya
+Input of N: 4
+Output: Both strings are equal.
+#include<stdio.h>
+
+#include<stdlib.h>
+void main()
+{
+	int size = 1, i = 0,flage=0,count=0;
+	char ch;
+	char* p = NULL;
+	char* q = NULL;
+	char* n = NULL;
+	p = (char*)malloc(sizeof(char));
+	*p = '\0';
+	q = (char*)malloc(sizeof(char));
+	*q = '\0';
+	n = (int*)malloc(sizeof(int));
+
+	printf("Enter first String\n");	
+	do
+	{
+		scanf_s("%c", &ch);
+		if (ch != '\n')
+		{
+			size++;
+			p = (char*)realloc(p, size * sizeof(char));
+			*(p + i) = ch;
+			*(p + i + 1) = '\0';
+			i++;
+		}
+
+	} while (ch != '\n');
+	printf("%s\n", p);
+
+	printf("Enter second String\n");
+	i = 0;
+	do
+	{
+		scanf_s("%c", &ch);
+		if (ch != '\n')
+		{
+			size++;
+			q = (char*)realloc(q, size * sizeof(char));
+			*(q + i) = ch;
+			*(q + i + 1) = '\0';
+			i++;
+		}
+
+	} while (ch != '\n');
+	printf("%s\n", q);
+	printf("Enter Number\n");
+	scanf_s("%d", n);
+	i = 0;
+	while (*(p + i) != '\0' && *(q + i) != '\0')
+	{
+		if (count <= n)
+		{
+			if (*(p + i) == *(q + i))
+			{
+				i++;
+				count++;
+				continue;
+			}
+			else if (*(p + i) < *(q + i))
+			{
+				flage = 1;
+				printf("1");
+				break;
+			}
+			else
+			{
+				flage = 1;
+				printf("-1");
+				break;
+			}
+		}
+		break;
+	}
+	if (flage == 0)
+		printf("0");
+}
+
+OUTPUT:
+Enter first String
+Ramanachary
+Ramanachary
+Enter second String
+Rama
+Rama
+Enter Number
+3
+0
+************************************
+47.Write a C program to find the sum of contiguous subarray within a 
+one dimensional array of numbers which has the largest sum
+(Using Dynamic Memory Allocation)
+#include<stdio.h>
+
+#include<stdlib.h>
+
+void main()
+{
+	int* p = NULL;
+	int* n = NULL;
+	int i, k, sum = 0, maxsum = 0;
+	printf("Enter How Many Element You Want\n");
+	n = (int*)malloc(sizeof(int));
+	scanf_s("%d", n);
+	printf("Enter Array Element\n");
+	p = (int*)malloc(*n * sizeof(int));
+
+	for (i = 0; i < *n; i++)
+	{
+		scanf_s("%d", p + i);
+	}
+
+	printf("Array Element Are\n");
+
+	for (i = 0; i < *n; i++)
+	{
+		printf("%d\n", *(p + i));
+	}
+	for (i = 0; i < *n; i++)
+	{
+		for (k = 0; k <= i; k++)
+		{
+			sum = sum + *(p + k);
+			if (maxsum < sum);
+			{
+				maxsum = sum;
+			}
+		}
+		sum = 0;
+
+	}
+
+	printf("Maxsum of contiguous subarray is %d", maxsum);
+}
+OUTPUT:
+Enter How Many Element You Want
+5
+Enter Array Element
+12
+23
+34
+45
+56
+Array Element Are
+12
+23
+34
+45
+56
+Maxsum of contiguous subarray is 170
+**********************************
+48.Write a C program which accept two strings from user and compare two 
+strings without case sensitivity. If both strings are equal then return 0
+otherwise return difference between first mismatch character. (Using 
+Dynamic Memory Allocation)
+Eg:
+Input String1: india Is mY cOuntry
+Input String2: INDIA is MY countrY
+Output: Both strings are equal.
+
+#include<stdio.h>
+
+#include<stdlib.h>
+void main()
+{
+	int size = 1, i = 0,flage=0;
+	char ch;
+	char* p = NULL;
+	char* q = NULL;
+	
+	p = (char*)malloc(sizeof(char));
+	*p = '\0';
+	q = (char*)malloc(sizeof(char));
+	*q = '\0';
+	
+
+	printf("Enter first String\n");	
+	do
+	{
+		scanf_s("%c", &ch);
+		if (ch != '\n')
+		{
+			size++;
+			p = (char*)realloc(p, size * sizeof(char));
+			*(p + i) = ch;
+			*(p + i + 1) = '\0';
+			i++;
+		}
+
+	} while (ch != '\n');
+	printf("%s\n", p);
+
+	printf("Enter second String\n");
+	i = 0;
+	do
+	{
+		scanf_s("%c", &ch);
+		if (ch != '\n')
+		{
+			size++;
+			q = (char*)realloc(q, size * sizeof(char));
+			*(q + i) = ch;
+			*(q + i + 1) = '\0';
+			i++;
+		}
+
+	} while (ch != '\n');
+	printf("%s\n", q);
+	
+	i = 0;
+	while (*(p + i) != '\0' && *(q + i) != '\0')
+	{
+		if (*(p + i) == *(q + i))
+		{
+			i++;
+			continue;
+		}
+		else if (*(p + i) - 32 == *(q + i) || *(p + i) == *(q + i) - 32)
+		{
+			i++;
+			continue;
+		}
+		else if (*(p + i) + 32 == *(q + i) || *(p + i) == *(q + i) + 32)
+		{
+			i++;
+			continue;
+		}
+		else if (*(p + i) < *(q + i))
+		{
+			flage = 1;
+			printf("1");
+			break;
+		}
+		else
+		{
+			flage = 1;
+			printf("-1");
+			break;
+		}
+
+	}
+	if (flage == 0)
+		printf("0");
+}
+
+
+
+OUTPUT:
+Enter first String
+INDIA
+INDIA
+Enter second String
+india
+india
+0
+**********************************
+49.Write a C program which accept string from user and then reverse the 
+string till first N characters without taking another string. (Using Dynamic 
+Memory Allocation)
+Eg:
+Input String: India is my country
+Input of N: 8
+Output : m si aidnIy country
+#include<stdio.h>
+
+#include<stdlib.h>
+void main()
+{
+	int size = 1, i =0;
+	char ch;
+	char* p = NULL;
+	char* n = NULL;
+	p = (char*)malloc(sizeof(char));
+	*p = '\0';
+	n = (int*)malloc(sizeof(int));
+
+	printf("Enter first String\n");	
+	do
+	{
+		scanf_s("%c", &ch);
+		if (ch != '\n')
+		{
+			size++;
+			p = (char*)realloc(p, size * sizeof(char));
+			*(p + i) = ch;
+			*(p + i + 1) = '\0';
+			i++;
+		}
+
+	} while (ch != '\n');
+	printf("%s\n", p);
+	printf("Enter Number\n");
+	scanf_s("%d", n);
+	
+	i = *n;
+	while (i >= 0)
+	{
+		printf("%c", *(p + i));
+		i--;
+	}
+	while (*(p + i) != '\0')
+	{
+		if (i <= *n)
+		{
+			i++;
+		}
+		else
+		{
+			printf("%c", *(p + i));
+			i++;
+		}
+	}
+}
+
+
+OUTPUT:
+Enter first String
+India Is My Country
+India Is My Country
+Enter Number
+8
+ sI aidnIMy Country
+*******************************
+50.Write a C program which accept string from user and then accept range and 
+reverse the string in that range without taking another string. (Using 
+Dynamic Memory Allocation)
+Eg:
+Input String: India is my country
+Input of N1: 3
+Input of N1: 9
+Output String: Indm si aicountry
+
+#include<stdio.h>
+
+#include<stdlib.h>
+void main()
+{
+	int size = 1, i =0;
+	char ch;
+	char* p = NULL;
+	char* n1 = NULL;
+	char* n2 = NULL;
+	p = (char*)malloc(sizeof(char));
+	*p = '\0';
+	n1 = (int*)malloc(sizeof(int));
+	n2 = (int*)malloc(sizeof(int));
+
+	printf("Enter first String\n");	
+	do
+	{
+		scanf_s("%c", &ch);
+		if (ch != '\n')
+		{
+			size++;
+			p = (char*)realloc(p, size * sizeof(char));
+			*(p + i) = ch;
+			*(p + i + 1) = '\0';
+			i++;
+		}
+
+	} while (ch != '\n');
+	printf("%s\n", p);
+	printf("Enter first Number\n");
+	scanf_s("%d", n1);
+	printf("Enter second Number\n");
+	scanf_s("%d", n2);
+	
+	i = 0;
+	while (*(p + i) != '\0')
+	{
+		while (i < *n1)
+		{
+			printf("%c", *(p + i));
+			i++;
+		}
+		while (i < *n2)
+		{
+			i++;
+		}
+		while (i >= *n1)
+		{
+			printf("%c", *(p + i));
+			i--;
+		}
+		while (*(p + i) != '\0')
+		{
+			if (i < *n2)
+			{
+				i++;
+			}
+			else
+			{
+				printf("%c", *(p + i));
+				i++;
+			}
+		}
+
+	}
+}
+
+
+OUTPUT:
+Enter first String
+India Is My Country
+India Is My Country
+Enter first Number
+3
+Enter second Number
+8
+Ind sI ai My Country
+*****************************
+51. Write a C program to find the maximum sum of a subsequent 
+numbers in given array. (Using Dynamic Memory Allocation)
+#include<stdio.h>
+
+#include<stdlib.h>
+
+void main()
+{
+	int* p = NULL;
+	int* n = NULL;
+	int i, sum = 0, maxsum = 0;
+	printf("Enter How Many Element You Want\n");
+	n = (int*)malloc(sizeof(int));
+	scanf_s("%d", n);
+	printf("Enter Array Element\n");
+	p = (int*)malloc(*n * sizeof(int));
+
+	for (i = 0; i < *n; i++)
+	{
+		scanf_s("%d", p + i);
+	}
+
+	printf("Array Element Are\n");
+
+	for (i = 0; i < *n; i++)
+	{
+		printf("%d\n", *(p + i));
+	}
+	for (i = 0; i < *n - 1; i++)
+	{
+		sum = *(p + i) + *(p + i+1);
+		//printf("%d\n", sum);
+		if (sum > maxsum)
+		{
+			maxsum = sum;
+
+		}
+		sum = 0;
+	}
+
+	printf("maximum sum of a subsequent numbers is %d", maxsum);
+}
+OUTPUT:
+Enter How Many Element You Want
+5
+Enter Array Element
+1
+2
+3
+4
+5
+Array Element Are
+1
+2
+3
+4
+5
+maximum sum of a subsequent numbers is 9
+*******************************
+52.Write a C program which accept string from user and reverse words from 
+that string which are of even length. (Using Dynamic Memory Allocation)
+Eg:
+Input String: India is my country. I love my country.
+Output String: India si ym .yrtnuoc I evol ym . Yrtnuoc
+#include<stdio.h>
+
+#include<stdlib.h>
+void main()
+{
+	int size = 1, i =0, a, count = 0, j, k;
+	char ch;
+	char* p = NULL;
+	p = (char*)malloc(sizeof(char));
+	*p = '\0';
+
+	printf("Enter first String\n");	
+	do
+	{
+		scanf_s("%c", &ch);
+		if (ch != '\n')
+		{
+			size++;
+			p = (char*)realloc(p, size * sizeof(char));
+			*(p + i) = ch;
+			*(p + i + 1) = '\0';
+			i++;
+		}
+
+	} while (ch != '\n');
+	printf("%s\n", p);
+	
+	i = 0;
+	while (*(p + i) != '\0')
+	{
+		if (*(p + i) == ' ')
+		{
+			i++;
+		}
+		while (*(p + i) != ' ' && *(p + i) != '\0')
+		{
+			count++;
+			if (*(p + i+1) == ' ')
+			{
+				break;
+			}
+			i++;
+		}
+		if (count % 2 == 0)
+		{
+			for (j = i; *(p + j) != ' ' && j >= 0; j--)
+			{
+				printf("%c", *(p + j));
+				if (*(p + j) != ' ' && *(p + j-1) == ' ')
+				{
+					printf(" ");
+				}
+				if (j == 0)
+				{
+					printf(" ");
+				}
+				if (*(p + j) == '\0')
+				{
+					break;
+				}
+			}
+
+		}
+		else
+		{
+			j = i;
+			for (j = i; *(p + j) != ' ' && j >= 0; j--)
+			{
+				if (*(p + j-1) == ' ' || j == 0)
+				{
+					for (k = j; *(p + k) != ' '; k++)
+					{
+						printf("%c", *(p + k));
+						if (*(p + k+1) == ' ')
+						{
+							printf(" ");
+						}
+						if (*(p + k + 1) == '\0')
+						{
+							break;
+						}
+
+					}
+
+				}
+			}
+
+		}
+		count = 0;
+		i++;
+
+	}
+}
+
+
+OUTPUT:
+Enter first String
+India Is My Country
+India Is My Country
+India sI yM Country
+*********************************
+53.Write a C program which accept string from user and check whether string 
+is palindrome or not. (Using Dynamic Memory Allocation)
+Eg:
+Input String: level
+Output String: String is palindrome.
+#include<stdio.h>
+
+#include<stdlib.h>
+void main()
+{
+	int size = 1, i =0, count = 0, j, flage = 0;
+	char ch;
+	char* p = NULL;
+	char* q = NULL;
+	p = (char*)malloc(sizeof(char));
+	*p = '\0';
+	q = (char*)malloc(sizeof(char));
+	*q = '\0';
+
+	printf("Enter first String\n");	
+	do
+	{
+		scanf_s("%c", &ch);
+		if (ch != '\n')
+		{
+			size++;
+			p = (char*)realloc(p, size * sizeof(char));
+			*(p + i) = ch;
+			*(p + i + 1) = '\0';
+			i++;
+		}
+
+	} while (ch != '\n');
+	printf("%s\n", p);
+	i = 0;
+
+	while (*(p + i) != '\0')
+	{
+		if (*(p + i+1) == '\0')
+			break;
+		count++;
+		i++;
+	}
+	i = count;
+	j = 0;
+	while (i >= 0)
+	{
+		q = (char*)realloc(q, size * sizeof(char));
+		*(q + j) = *(p + i);
+		*(q + j + 1) = '\0';
+		
+		i--;
+		j++;
+		if (i < 0)
+		{
+			
+			break;
+		}
+	}
+	//printf("%s\n", q);
+	i = 0;
+	while (*(p + i) != '\0' && *(q + i) != '\0')
+	{
+		if (*(p + i) == *(q + i))
+		{
+			i++;
+			continue;
+		}
+		else
+		{
+			flage = 1;
+			printf("String is not palindrome");
+			break;
+		}
+	}
+	if (flage == 0)
+	{
+		printf("String is Palindrome");
+	}
+}
+
+
+OUTPUT:
+Enter first String
+level
+level
+String is Palindrome
+*****************************
+54. An array consist of Integers. Write a C program to count the 
+number of elements less than, greater than and equal to zero.
+(Using Dynamic Memory Allocation)
+Enter How Many Element You Want
+5
+Enter Array Element
+1
+0
+-1
+-2
+3
+Array Element Are
+1
+0
+-1
+-2
+3
+Number greater than zero are:2
+Number equal to zero are:1
+Number less than zero are:2
+OUTPUT:
+Enter How Many Element You Want
+5
+Enter Array Element
+1
+0
+-1
+-2
+3
+Array Element Are
+1
+0
+-1
+-2
+3
+Number greater than zero are:2
+Number equal to zero are:1
+Number less than zero are:2
+*****************************
+55.Write a C program to count number of alphabates, spaces and words in 
+given string. (Using Dynamic Memory Allocation)
+#include<stdio.h>
+
+#include<stdlib.h>
+void main()
+{
+	int size = 1, i = 0, space = 0, character = 0, word = 0;
+	char ch;
+	char* p = NULL;
+	p = (char*)malloc(sizeof(char));
+	*p = '\0';
+
+	printf("Enter first String\n");	
+	do
+	{
+		scanf_s("%c", &ch);
+		if (ch != '\n')
+		{
+			size++;
+			p = (char*)realloc(p, size * sizeof(char));
+			*(p + i) = ch;
+			*(p + i + 1) = '\0';
+			i++;
+		}
+
+	} while (ch != '\n');
+	printf("%s\n", p);
+	i = 0;
+	while (*(p + i) != '\0')
+	{
+		if (*(p + i) == ' ')
+		{
+			space++;
+
+		}
+		else if (*(p + i) != ' ')
+		{
+			character++;
+
+		}
+
+		if (*(p + i) != ' ' && (*(p + i+1) == ' ' || *(p + i+1) == '\0'))
+		{
+			word++;
+		}
+		i++;
+	}
+
+	printf("Space: %d charater: %d word: %d", space, character, word);
+}
+
+
+OUTPUT:
+Enter first String
+   India   Is    My   Country
+   India   Is    My   Country
+Space: 13 charater: 16 word: 4
+***********************************

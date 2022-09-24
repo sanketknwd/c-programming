@@ -1,0 +1,403 @@
+
+Remove Space
+
+#include<stdio.h>
+void main()
+{
+	char str[100];
+	int i, k;
+	printf("Enter String\n");
+
+	fgets(str, sizeof(str), stdin);
+
+	printf("Given String is\n");
+	printf("%s", str);
+	i = 0;
+	while (str[i] != '\n')
+	{
+		while (str[i] == ' ')
+		{
+			i++;
+		}
+		while (str[i] != ' ' && str[i]!='\n')
+		{
+			printf("%c", str[i]);
+			i++;
+			if (str[i] == ' ')
+			{
+				k = i;
+				while (str[k] == ' ')
+				{
+					k++;
+	
+				}
+				if (str[k] == '\n')
+				{
+					break;
+				}
+				printf("$");
+			}
+		}
+
+	}
+}
+
+*************************************************
+Write a program in C to count the frequency of each 
+element of an array.
+
+#include<stdio.h>
+void main()
+{
+	int arr[100], i, n,k,count=0,p,count1=0;
+
+	printf("Enter Element you Want\n");
+	scanf("%d", &n);
+
+	printf("Enter Element\n");
+	for (i = 0; i < n; i++)
+	{
+		scanf("%d", &arr[i]);
+	}
+	printf("Array Element Are\n");
+	for (i = 0; i < n; i++)
+	{
+		printf("%d\n", arr[i]);
+	}
+
+	for (i = 0; i < n; i++)
+	{
+		for (k = 0; k < n; k++)
+		{
+			if (arr[i] == arr[k])
+			{
+				count++;
+			}
+		}
+		for (p = 0; p < i; p++)
+		{
+			if (arr[p] == arr[i])
+			{
+				count1++;
+			}
+		}
+		if (count1 == 0)
+		{
+			printf(" % d = % d\n", arr[i], count);
+		}
+		count = 0;
+		count1 = 0;
+	}
+}
+
+
+Enter Element you Want
+10
+Enter Element
+12
+34
+12
+34
+12
+34
+56
+56
+78
+78
+Array Element Are
+12
+34
+12
+34
+12
+34
+56
+56
+78
+78
+12 = 3
+34 = 3
+56 = 2
+78 = 2
+*************************************************************
+
+Write C Program to Find the two Elements such that 
+their Sum is Closest to given number
+
+#include<stdio.h>
+
+void main()
+{
+	int arr[100],n,n1, i,k,sum=0,olddiff,diff=0,a=0,b=0,max=0;
+
+	printf("How Many Element\n");
+	scanf("%d", &n);
+	printf("Enter Number\n");
+	scanf("%d", &n1);
+
+	printf("Enter Array Element\n");
+
+	for (i = 0; i < n; i++)
+	{
+		scanf("%d", &arr[i]);
+		if (max < arr[i])
+		{
+			max = arr[i];
+		}
+	}
+
+	printf("Array Element Are\n");
+
+	for (i = 0; i < n; i++)
+	{
+		printf("%d\n", arr[i]);
+	}
+	olddiff = max;
+	for (i = 0; i < n; i++)
+	{
+		for (k = 0; k < n; k++)
+		{
+			if (i == k)
+				continue;
+			sum = arr[i] + arr[k];
+				if (sum < n1)
+				{
+					diff = n1 - sum;
+					if (diff < olddiff)
+					{
+						olddiff = diff;
+						a = arr[i];
+						b = arr[k];
+					}
+				}
+		}
+	}
+	printf("sum of %d and %d closest to given Number %d", a, b, n1);
+}
+output:
+How Many Element
+10
+Enter Number
+20
+Enter Array Element
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+Array Element Are
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+sum of 9 and 10 closest to given Number 20
+************************************************
+
+
+matrix multiplication
+
+#include<stdio.h>
+void main()
+{
+	int arr[100][100], arr1[100][100], arr2[100][100], i, k, row, col, j;
+
+
+	printf("Enter Row and Column\n");
+	scanf_s("%d%d", &row, &col);
+
+	printf("Enter First Matrix\n");
+	for (i = 0; i < row; i++)
+	{
+		for (k = 0; k < col; k++)
+		{
+			scanf_s("%d", &arr[i][k]);
+		}
+	}
+	printf("First Matrix\n");
+	for (i = 0; i < row; i++)
+	{
+		for (k = 0; k < col; k++)
+		{
+			printf("%d\t", arr[i][k]);
+		}
+		printf("\n");
+	}
+
+	printf("Enter second Matrix\n");
+	for (i = 0; i < row; i++)
+	{
+		for (k = 0; k < col; k++)
+		{
+			scanf_s("%d", &arr1[i][k]);
+		}
+	}
+	printf("second Matrix\n");
+	for (i = 0; i < row; i++)
+	{
+		for (k = 0; k < col; k++)
+		{
+			printf("%d\t", arr1[i][k]);
+		}
+		printf("\n");
+	}
+	printf("Multiplication Of MAtrix\n");
+
+	for (i = 0; i < row; i++)
+	{
+		for (j = 0; j < col; j++)
+		{
+			arr2[i][j] = 0;
+			for (k = 0; k < row; k++)
+			{
+				arr2[i][j] = arr2[i][j] + arr[i][k] * arr1[k][j];
+			}
+		}
+	}
+
+	for (i = 0; i < row; i++)
+	{
+		for (k = 0; k < col; k++)
+		{
+			printf("%d\t", arr2[i][k]);
+		}
+		printf("\n");
+	}
+}
+****************************************************
+
+
+space increment 
+
+#include<stdio.h>
+
+void main()
+{
+	char str[100];
+	int i,count=1,k;
+
+	printf("Enter String\n");
+
+	fgets(str, sizeof(str), stdin);
+
+	printf("Your String IS\n");
+	printf("%s", str);
+
+	i = 0;
+	while (str[i] != '\0')
+	{
+		while (str[i] == ' ')
+		{
+			i++;
+		}
+		while (str[i] != ' ' && str[i]!='\n')
+		{
+			printf("%c", str[i]);
+
+			if (str[i + 1] == ' ')
+			{
+				for (k = 0; k < count; k++)
+				{
+					printf("$");
+				}
+				count++;
+			}
+			i++;
+		}
+	}
+}
+****************************************************
+
+1   &&&    2   space
+
+#include<stdio.h>
+
+void main()
+{
+	char str[100];
+	int i,wordcount=0,k;
+
+	printf("Enter String\n");
+
+	fgets(str, sizeof(str), stdin);
+
+	printf("Your String IS\n");
+	printf("%s", str);
+
+	i = 0;
+	while (str[i] != '\0')
+	{
+		while (str[i] == ' ')
+		{
+			i++;
+		}
+		while (str[i] != ' ' && str[i]!='\n')
+		{
+			printf("%c", str[i]);
+
+			if (str[i + 1] == ' ')
+			{
+				wordcount++;
+				if (wordcount % 2 == 0)
+				{
+					for (k = 0; k < 2; k++)
+					{
+						printf("$");
+					}
+				}
+				else
+				{
+					printf("$");
+				}
+			}
+			i++;
+		}
+		i++;
+	}
+}
+*************************************************
+
+#include<stdio.h>
+void main()
+{
+	char str[100] = "Hellow GoodName";
+	char str1[100];
+	int i, j;
+	printf("Enter Your String\n");
+	fgets(str1, sizeof(str1), stdin);
+	printf("Your String\n");
+	printf("%s", str1);
+	i = 0;
+	while (str[i] != '\0')
+	{
+		i++;
+		if (str[i] == ' ')
+		{
+			j = 0;
+			i++;
+			while (str1[j] != '\n')
+			{
+				str[i] = str1[j];
+				i++;
+				j++;
+				if (str1[j] == '\n')
+				{
+					str[i] = '\0';
+				}
+			}
+		}
+	}
+	printf("%s", str);
+}
+*****************************************
+

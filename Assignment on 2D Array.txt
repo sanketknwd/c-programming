@@ -1,0 +1,1694 @@
+.******************************************
+Assignment on 2D Array
+******************************************
+1.Write a C program to add two matrices in third Matrix(Using Static Memory 
+Allocation). 
+
+#include<stdio.h>
+void main()
+{
+	int row, column, arr[100][100],arr1[100][100],ans[100][100],i,j;
+
+	printf("Enter Row And column\n");
+	scanf_s("%d%d", &row, &column);
+
+	printf("Enter First Matrix Element\n");
+
+	for (i = 0; i < row; i++)
+	{
+		for (j = 0; j < column; j++)
+		{
+			scanf_s("%d", &arr[i][j]);
+		}
+	}
+	printf("First Matrix Element are\n");
+
+	for (i = 0; i < row; i++)
+	{
+		for (j = 0; j < column; j++)
+		{
+			printf("%d\t", arr[i][j]);
+		}
+		printf("\n");
+	}
+	printf("Enter Second Matrix Element\n");
+
+	for (i = 0; i < row; i++)
+	{
+		for (j = 0; j < column; j++)
+		{
+			scanf_s("%d", &arr1[i][j]);
+		}
+	}
+	printf("Second Matrix Element are\n");
+
+	for (i = 0; i < row; i++)
+	{
+		for (j = 0; j < column; j++)
+		{
+			printf("%d\t", arr1[i][j]);
+		}
+		printf("\n");
+	}
+
+	printf("Addition Of Two matrix\n");
+
+	for (i = 0; i < row; i++)
+	{
+		for (j = 0; j < column; j++)
+		{
+			ans[i][j]=arr[i][j] + arr1[i][j];
+		}
+	}
+
+	for (i = 0; i < row; i++)
+	{
+		for (j = 0; j < column; j++)
+		{
+			printf("%d\t", ans[i][j]);
+		}
+		printf("\n");
+	}
+
+}
+
+Output:
+
+Enter Row And column
+3 3
+Enter First Matrix Element
+1
+2
+3
+4
+5
+6
+7
+8
+9
+First Matrix Element are
+1       2       3
+4       5       6
+7       8       9
+Enter Second Matrix Element
+9
+8
+7
+6
+5
+4
+3
+2
+1
+Second Matrix Element are
+9       8       7
+6       5       4
+3       2       1
+Addition Of Two matrix
+10      10      10
+10      10      10
+10      10      10
+******************************************
+2. Write a C program to subtract two matrices in third matrix (Using Static 
+memory Allocation). 
+#include<stdio.h>
+void main()
+{
+	int row, column, arr[100][100],arr1[100][100],ans[100][100],i,j;
+
+	printf("Enter Row And column\n");
+	scanf_s("%d%d", &row, &column);
+
+	printf("Enter First Matrix Element\n");
+
+	for (i = 0; i < row; i++)
+	{
+		for (j = 0; j < column; j++)
+		{
+			scanf_s("%d", &arr[i][j]);
+		}
+	}
+	printf("First Matrix Element are\n");
+
+	for (i = 0; i < row; i++)
+	{
+		for (j = 0; j < column; j++)
+		{
+			printf("%d\t", arr[i][j]);
+		}
+		printf("\n");
+	}
+	printf("Enter Second Matrix Element\n");
+
+	for (i = 0; i < row; i++)
+	{
+		for (j = 0; j < column; j++)
+		{
+			scanf_s("%d", &arr1[i][j]);
+		}
+	}
+	printf("Second Matrix Element are\n");
+
+	for (i = 0; i < row; i++)
+	{
+		for (j = 0; j < column; j++)
+		{
+			printf("%d\t", arr1[i][j]);
+		}
+		printf("\n");
+	}
+
+	printf("Addition Of Two matrix\n");
+
+	for (i = 0; i < row; i++)
+	{
+		for (j = 0; j < column; j++)
+		{
+			ans[i][j]=arr[i][j] - arr1[i][j];
+		}
+	}
+
+	for (i = 0; i < row; i++)
+	{
+		for (j = 0; j < column; j++)
+		{
+			printf("%d\t", ans[i][j]);
+		}
+		printf("\n");
+	}
+
+}
+
+Output:
+Enter Row And column
+3 3
+Enter First Matrix Element
+1
+2
+3
+4
+5
+6
+7
+8
+9
+First Matrix Element are
+1       2       3
+4       5       6
+7       8       9
+Enter Second Matrix Element
+9
+8
+7
+6
+5
+4
+3
+2
+1
+Second Matrix Element are
+9       8       7
+6       5       4
+3       2       1
+Addition Of Two matrix
+-8      -6      -4
+-2      0       2
+4       6       8
+******************************************
+3. Write a c program to check whether given matrix is upper triangular or not 
+(Using Static Memory Allocation).
+
+#include<stdio.h>
+void main()
+{
+	int row, column, arr[100][100],i,j,flag=0;
+
+	printf("Enter Row And column\n");
+	scanf_s("%d%d", &row, &column);
+
+	printf("Enter Matrix Element\n");
+
+	for (i = 0; i < row; i++)
+	{
+		for (j = 0; j < column; j++)
+		{
+			scanf_s("%d", &arr[i][j]);
+		}
+	}
+	printf("Matrix Element are\n");
+
+	for (i = 0; i < row; i++)
+	{
+		for (j = 0; j < column; j++)
+		{
+			printf("%d\t", arr[i][j]);
+		}
+		printf("\n");
+	}
+
+	//check for matrix is upper triangular or not
+
+	for (i = 0; i < row; i++)
+	{
+		for (j = 0; j < column; j++)
+		{
+			if (i == j)
+			{
+				break;
+			}
+			if (arr[i][j] == 0)
+			{
+				continue;
+			}
+			else
+			{
+				flag = 1;
+			}
+		}
+		if (flag == 1)
+		{
+			printf("Given Array Is Not Upper Trangular\n");
+			break;
+		}
+		
+	}
+	if (flag == 0)
+	{
+		printf("Given Array Is Upper Trangular\n");
+	}
+
+}
+Output:
+Enter Row And column
+3
+3
+Enter Matrix Element
+1
+2
+3
+0
+4
+5
+0
+0
+6
+Matrix Element are
+1       2       3
+0       4       5
+0       0       6
+Given Array Is Upper Trangular
+******************************************
+4. Write a C program to check whether given matrix is lower triangular or not 
+(Using Static Memory Allocation). 
+
+#include<stdio.h>
+void main()
+{
+	int row, column, arr[100][100],i,j,flag=0;
+
+	printf("Enter Row And column\n");
+	scanf_s("%d%d", &row, &column);
+
+	printf("Enter Matrix Element\n");
+
+	for (i = 0; i < row; i++)
+	{
+		for (j = 0; j < column; j++)
+		{
+			scanf_s("%d", &arr[i][j]);
+		}
+	}
+	printf("Matrix Element are\n");
+
+	for (i = 0; i < row; i++)
+	{
+		for (j = 0; j < column; j++)
+		{
+			printf("%d\t", arr[i][j]);
+		}
+		printf("\n");
+	}
+
+	//check for matrix is upper triangular or not
+
+	for (i = 0; i < row; i++)
+	{
+		for (j = 0; j < column; j++)
+		{
+			if (i < j)
+			{
+
+				if (arr[i][j] == 0)
+				{
+					continue;
+				}
+				else
+				{
+					flag = 1;
+				}
+			}
+		}
+		if (flag == 1)
+		{
+			printf("Given Array Is Not Lower Trangular\n");
+			break;
+		}
+		
+	}
+	if (flag == 0)
+	{
+		printf("Given Array Is Lower Trangular\n");
+	}
+
+}
+
+Output:
+Enter Row And column
+3
+3
+Enter Matrix Element
+1
+0
+0
+2
+3
+0
+1
+2
+3
+Matrix Element are
+1       0       0
+2       3       0
+1       2       3
+Given Array Is Lower Trangular
+******************************************
+5.Write C Program to Check if a given Matrix is an Identity Matrix. (Using Static 
+Memory Allocation).
+
+#include<stdio.h>
+void main()
+{
+	int row, column, arr[100][100], i, j, flag = 0;
+
+	printf("Enter Row And column\n");
+	scanf_s("%d%d", &row, &column);
+
+	printf("Enter Matrix Element\n");
+
+	for (i = 0; i < row; i++)
+	{
+		for (j = 0; j < column; j++)
+		{
+			scanf_s("%d", &arr[i][j]);
+		}
+	}
+	printf("Matrix Element are\n");
+
+	for (i = 0; i < row; i++)
+	{
+		for (j = 0; j < column; j++)
+		{
+			printf("%d\t", arr[i][j]);
+		}
+		printf("\n");
+	}
+
+	//check for matrix is upper triangular or not
+
+	for (i = 0; i < row; i++)
+	{
+		for (j = 0; j < column; j++)
+		{
+			if (i == j)
+			{
+
+				if (arr[i][j] == 1)
+				{
+					continue;
+				}
+				else
+				{
+					flag = 1;
+					break;
+				}
+			}
+			else {
+				if (arr[i][j] == 0)
+				{
+					continue;
+				}
+				else
+				{
+					flag = 1;
+					break;
+				}
+			}
+		}
+		if (flag == 1)
+		{
+			printf("Given Array Is Not Identity Matrix\n");
+			break;
+		}
+
+	}
+	if (flag == 0)
+	{
+		printf("Given Array Is Identity Matrix\n");
+	}
+
+}
+Output:
+Enter Row And column
+3 3
+Enter Matrix Element
+1
+0
+0
+0
+1
+0
+0
+0
+1
+Matrix Element are
+1       0       0
+0       1       0
+0       0       1
+Given Array Is Identity Matrix
+******************************************
+6.Write a C Program to multiply two Matrices in third matrix(Using Static 
+Memory Allocation).
+#include<stdio.h>
+
+void main()
+{
+	int arr[10][10], arr1[10][10], arr2[10][10], i, j,row,col,row1,col1,k;
+
+	printf("Enter Row And Column for First Array\n");
+	scanf_s("%d %d", &row, &col);
+
+	printf("Enter Array Element For First Array\n");
+	for (i = 0; i < row; i++)
+	{
+		for (j = 0; j < col; j++)
+		{
+			scanf_s("%d", &arr[i][j]);
+		}
+	}
+	printf("Array Element of First Array\n");
+	for (i = 0; i < row; i++)
+	{
+		for (j = 0; j < col; j++)
+		{
+			printf("%d\t", arr[i][j]);
+		}
+		printf("\n");
+	}
+
+	printf("Enter Row And Column for second Array\n");
+	scanf_s("%d %d", &row1, &col1);
+
+	printf("Enter Array Element For Second Array\n");
+	for (i = 0; i < row1; i++)
+	{
+		for (j = 0; j < col1; j++)
+		{
+			scanf_s("%d", &arr1[i][j]);
+		}
+	}
+	printf("Array Element of Second Array\n");
+	for (i = 0; i < row1; i++)
+	{
+		for (j = 0; j < col1; j++)
+		{
+			printf("%d\t", arr1[i][j]);
+		}
+		printf("\n");
+	}
+
+	//Multiplication
+
+	for (i = 0; i < row; i++)
+	{
+		for (j = 0; j < col; j++)
+		{
+			arr2[i][j] = 0;
+			for (k = 0; k < row; k++)
+			{
+				arr2[i][j] = arr2[i][j] + arr[i][k] * arr1[k][j];
+			}
+		}
+	}
+
+	printf("Array Element of Second Array\n");
+	for (i = 0; i < row; i++)
+	{
+		for (j = 0; j < col; j++)
+		{
+			printf("%d\t", arr2[i][j]);
+		}
+		printf("\n");
+	}
+}
+
+Output:
+Enter Row And Column for First Array
+3
+3
+Enter Array Element For First Array
+1
+2
+3
+4
+5
+6
+7
+8
+9
+Array Element of First Array
+1       2       3
+4       5       6
+7       8       9
+Enter Row And Column for second Array
+3
+3
+Enter Array Element For Second Array
+1
+2
+3
+4
+5
+6
+7
+8
+9
+Array Element of Second Array
+1       2       3
+4       5       6
+7       8       9
+Array Element of Second Array
+30      36      42
+66      81      96
+102     126     150
+******************************************
+7.Write C program to check if the matrix is symmetric or not (Using Static 
+Memory Allocation).
+#include<stdio.h>
+
+void main()
+{
+	int row,col,arr[10][10], arr1[10][10], i, j,flag=0;
+
+	printf("Enter Row And Column for First Array\n");
+	scanf_s("%d %d", &row, &col);
+
+	printf("Enter Array Element For First Array\n");
+	for (i = 0; i < row; i++)
+	{
+		for (j = 0; j < col; j++)
+		{
+			scanf_s("%d", &arr[i][j]);
+		}
+	}
+	printf("Array Element of First Array\n");
+	for (i = 0; i < row; i++)
+	{
+		for (j = 0; j < col; j++)
+		{
+			printf("%d\t", arr[i][j]);
+		}
+		printf("\n");
+	}
+
+	//Generate Transpose Matrix
+
+	for (i = 0; i < row; i++)
+	{
+		for (j = 0; j < col; j++)
+		{
+			arr1[j][i] = arr[i][j];
+			
+		}
+	}
+
+	printf("Trancpose Matrix\n");
+	for (i = 0; i < row; i++)
+	{
+		for (j = 0; j < col; j++)
+		{
+			printf("%d\t", arr1[i][j]);
+		}
+		printf("\n");
+	}
+
+	//Chech Given Matrix is symmetric or Not
+
+	for (i = 0; i < row; i++)
+	{
+		for (j = 0; j < col; j++)
+		{
+			if (arr[i][j] == arr1[i][j])
+			{
+				continue;
+			}
+			else 
+			{
+				flag = 1;
+				printf("Given Matrix Is Not Symmetric\n");
+				break;
+			}
+
+		}
+
+		if (flag == 1)
+		{
+			break;
+		}
+	}
+	if (flag == 0)
+	{
+		printf("Given Matrix Is Symmetric");
+	}
+}
+
+Output:
+Enter Row And Column for First Array
+3 3
+Enter Array Element For First Array
+2
+3
+6
+3
+4
+5
+6
+5
+9
+Array Element of First Array
+2       3       6
+3       4       5
+6       5       9
+Trancpose Matrix
+2       3       6
+3       4       5
+6       5       9
+Given Matrix Is Symmetric
+******************************************
+8.Write a C Program to find the transpose of a given matrix (Using Static 
+Memory Allocation). 
+#include<stdio.h>
+
+void main()
+{
+	int row,col,arr[10][10], arr1[10][10], i, j,flag=0;
+
+	printf("Enter Row And Column for First Array\n");
+	scanf_s("%d %d", &row, &col);
+
+	printf("Enter Array Element For First Array\n");
+	for (i = 0; i < row; i++)
+	{
+		for (j = 0; j < col; j++)
+		{
+			scanf_s("%d", &arr[i][j]);
+		}
+	}
+	printf("Array Element of First Array\n");
+	for (i = 0; i < row; i++)
+	{
+		for (j = 0; j < col; j++)
+		{
+			printf("%d\t", arr[i][j]);
+		}
+		printf("\n");
+	}
+
+	//Generate Transpose Matrix
+
+	for (i = 0; i < row; i++)
+	{
+		for (j = 0; j < col; j++)
+		{
+			arr1[j][i] = arr[i][j];
+			
+		}
+	}
+
+	printf("Trancpose Matrix\n");
+	for (i = 0; i < row; i++)
+	{
+		for (j = 0; j < col; j++)
+		{
+			printf("%d\t", arr1[i][j]);
+		}
+		printf("\n");
+	}
+
+}
+Output:
+Enter Row And Column for First Array
+3 3
+Enter Array Element For First Array
+1
+2
+3
+4
+5
+6
+7
+8
+9
+Array Element of First Array
+1       2       3
+4       5       6
+7       8       9
+Trancpose Matrix
+1       4       7
+2       5       8
+3       6       9
+******************************************
+9.Write a C Program to Search Element in a 2D Array (Using Static Memory 
+Allocation). 
+#include<stdio.h>
+void main()
+{
+	int row, column, arr[100][100],i,j,search,flag=0;
+
+	printf("Enter Row And column\n");
+	scanf_s("%d%d", &row, &column);
+
+	printf("Enter Matrix Element\n");
+
+	for (i = 0; i < row; i++)
+	{
+		for (j = 0; j < column; j++)
+		{
+			scanf_s("%d", &arr[i][j]);
+		}
+	}
+	printf("Matrix Element are\n");
+
+	for (i = 0; i < row; i++)
+	{
+		for (j = 0; j < column; j++)
+		{
+			printf("%d\t", arr[i][j]);
+		}
+		printf("\n");
+	}
+
+	printf("Enter Number You Want To Search\n");
+	scanf_s("%d", &search);
+
+	for (i = 0; i < row; i++)
+	{
+		for (j = 0; j < column; j++)
+		{
+			if(arr[i][j]==search)
+			{
+				flag = 1;
+				printf("Number Is found At arr[%d][%d]", i, j);
+				break;
+			}
+		}
+		
+	}
+
+	if (flag == 0)
+	{
+		printf("Number Is Not Found");
+	}
+
+}
+Output:
+Enter Row And column
+3 3
+Enter Matrix Element
+1
+2
+3
+4
+5
+6
+7
+8
+9
+Matrix Element are
+1       2       3
+4       5       6
+7       8       9
+Enter Number You Want To Search
+9
+Number Is found At arr[2][2]
+******************************************
+10.Write C Program to read and print a Matrix , R and C must be input by User. 
+(Using Static Memory Allocation).
+
+#include<stdio.h>
+
+void main()
+{
+	int row,col,arr[10][10], arr1[10][10], i, j,flag=0;
+
+	printf("Enter Row And Column for First Array\n");
+	scanf_s("%d %d", &row, &col);
+
+	printf("Enter Array Element For First Array\n");
+	for (i = 0; i < row; i++)
+	{
+		for (j = 0; j < col; j++)
+		{
+			scanf_s("%d", &arr[i][j]);
+		}
+	}
+	printf("Array Element of First Array\n");
+	for (i = 0; i < row; i++)
+	{
+		for (j = 0; j < col; j++)
+		{
+			printf("%d\t", arr[i][j]);
+		}
+		printf("\n");
+	}
+
+}
+
+Output:
+Enter Row And Column for First Array
+3 3
+Enter Array Element For First Array
+1
+2
+3
+4
+5
+6
+7
+8
+9
+Array Element of First Array
+1       2       3
+4       5       6
+7       8       9
+******************************************
+11. Write C Program to Find Sum of all Elements of a Matrix.
+#include<stdio.h>
+
+void main()
+{
+	int row,col,arr[10][10], arr1[10][10], i, j,sum=0;
+
+	printf("Enter Row And Column for First Array\n");
+	scanf_s("%d %d", &row, &col);
+
+	printf("Enter Array Element For First Array\n");
+	for (i = 0; i < row; i++)
+	{
+		for (j = 0; j < col; j++)
+		{
+			scanf_s("%d", &arr[i][j]);
+		}
+	}
+	printf("Array Element of First Array\n");
+	for (i = 0; i < row; i++)
+	{
+		for (j = 0; j < col; j++)
+		{
+			printf("%d\t", arr[i][j]);
+		}
+		printf("\n");
+	}
+	printf("Sum of All Element\n");
+	for (i = 0; i < row; i++)
+	{
+		for (j = 0; j < col; j++)
+		{
+			sum = sum + arr[i][j];
+
+		}
+		
+	}
+	printf("%d",sum);
+
+}
+Output:
+Enter Row And Column for First Array
+3 3
+Enter Array Element For First Array
+1
+2
+3
+4
+5
+6
+7
+8
+9
+Array Element of First Array
+1       2       3
+4       5       6
+7       8       9
+Sum of All Element
+45
+******************************************
+12. Write C Program to Find Largest Element in a Matrix.
+#include<stdio.h>
+
+void main()
+{
+	int row,col,arr[10][10], i, j,max=0;
+
+	printf("Enter Row And Column for First Array\n");
+	scanf_s("%d %d", &row, &col);
+
+	printf("Enter Array Element For First Array\n");
+	for (i = 0; i < row; i++)
+	{
+		for (j = 0; j < col; j++)
+		{
+			scanf_s("%d", &arr[i][j]);
+		}
+	}
+	printf("Array Element of First Array\n");
+	for (i = 0; i < row; i++)
+	{
+		for (j = 0; j < col; j++)
+		{
+			printf("%d\t", arr[i][j]);
+		}
+		printf("\n");
+	}
+	printf("Max Element:\n");
+	for (i = 0; i < row; i++)
+	{
+		for (j = 0; j < col; j++)
+		{
+			if (max < arr[i][j])
+			{
+				max = arr[i][j];
+			}
+
+		}
+		
+	}
+	printf("%d",max);
+
+}
+
+Output:
+Enter Row And Column for First Array
+3 3
+Enter Array Element For First Array
+1
+2
+3
+4
+5
+6
+7
+8
+9
+Array Element of First Array
+1       2       3
+4       5       6
+7       8       9
+Max Element:
+9
+******************************************
+13. Write C Program to Print Sum of Each Row and Column of given Matrix.(if 
+matrix 3x3,o/p=> r1=_,r2=_,r3=_,c1=_,c2=_,c3=_)
+
+
+#include<stdio.h>
+
+	void main()
+	{
+		int row, col, arr[10][10], i, j, count = 1,sum=0;
+
+		printf("Enter Row And Column for First Array\n");
+		scanf_s("%d %d", &row, &col);
+
+		printf("Enter Array Element For First Array\n");
+		for (i = 0; i < row; i++)
+		{
+			for (j = 0; j < col; j++)
+			{
+				scanf_s("%d", &arr[i][j]);
+			}
+		}
+		printf("Array Element of First Array\n");
+		for (i = 0; i < row; i++)
+		{
+			for (j = 0; j < col; j++)
+			{
+				printf("%d\t", arr[i][j]);
+			}
+			printf("\n");
+		}
+		printf("Row:\n");
+		for (i = 0; i < row; i++)
+		{
+			printf("r%d=", count);
+			for (j = 0; j < col; j++)
+			{
+				//printf("%d\t", arr[i][j]);
+				sum = sum + arr[i][j];
+
+			}
+
+			printf("%d\n",sum);
+			sum = 0;
+			count++;
+
+		}
+		count = 1;
+		printf("Column:\n");
+		for (i = 0; i < row; i++)
+		{
+			printf("c%d=", count);
+			for (j = 0; j < col; j++)
+			{
+				//printf("%d\t", arr[j][i]);
+				sum = sum + arr[j][i];
+			}
+			printf("%d\n",sum);
+			sum = 0;
+			count++;
+
+		}
+	}
+
+Output:
+Enter Row And Column for First Array
+3 3
+Enter Array Element For First Array
+1
+2
+3
+4
+5
+6
+7
+8
+9
+Array Element of First Array
+1       2       3
+4       5       6
+7       8       9
+Row:
+r1=6
+r2=15
+r3=24
+Column:
+c1=12
+c2=15
+c3=18
+******************************************
+14. Write C Program to Read a Matrix and Print Diagonals.
+#include<stdio.h>
+
+void main()
+{
+	int row,col,arr[10][10], i, j,count=1;
+
+	printf("Enter Row And Column for First Array\n");
+	scanf_s("%d %d", &row, &col);
+
+	printf("Enter Array Element For First Array\n");
+	for (i = 0; i < row; i++)
+	{
+		for (j = 0; j < col; j++)
+		{
+			scanf_s("%d", &arr[i][j]);
+		}
+	}
+	printf("Array Element of First Array\n");
+	for (i = 0; i < row; i++)
+	{
+		for (j = 0; j < col; j++)
+		{
+			printf("%d\t", arr[i][j]);
+		}
+		printf("\n");
+	}
+	printf("Diagonals Element Are:\n");
+	for (i = 0; i < row; i++)
+	{
+		for (j = 0; j < col; j++)
+		{
+			if (i == j)
+			{
+				printf("%d\t", arr[i][j]);
+			}
+			
+		
+		}
+		
+		
+	}
+	
+}
+Output:
+Enter Row And Column for First Array
+3 3
+Enter Array Element For First Array
+1
+2
+3
+4
+5
+6
+7
+8
+9
+Array Element of First Array
+1       2       3
+4       5       6
+7       8       9
+Diagonals Element Are:
+1       5       9
+******************************************
+15. Write C program to check two matrices are identical or not.
+
+#include<stdio.h>
+
+	void main()
+	{
+		int row, col,row1,col1, arr[10][10],arr1[10][10], i, j,flag=0;
+
+		printf("Enter Row And Column for First Array\n");
+		scanf_s("%d %d", &row, &col);
+
+		printf("Enter Array Element For First Array\n");
+		for (i = 0; i < row; i++)
+		{
+			for (j = 0; j < col; j++)
+			{
+				scanf_s("%d", &arr[i][j]);
+			}
+		}
+		printf("Array Element of First Array\n");
+		for (i = 0; i < row; i++)
+		{
+			for (j = 0; j < col; j++)
+			{
+				printf("%d\t", arr[i][j]);
+			}
+			printf("\n");
+		}
+		printf("Enter Row And Column for First Array\n");
+		scanf_s("%d %d", &row1, &col1);
+
+		printf("Enter Array Element For First Array\n");
+		for (i = 0; i < row1; i++)
+		{
+			for (j = 0; j < col1; j++)
+			{
+				scanf_s("%d", &arr1[i][j]);
+			}
+		}
+		printf("Array Element of First Array\n");
+		for (i = 0; i < row1; i++)
+		{
+			for (j = 0; j < col1; j++)
+			{
+				printf("%d\t", arr1[i][j]);
+			}
+			printf("\n");
+		}
+
+		//check for Identical
+		for (i = 0; i < row1; i++)
+		{
+			for (j = 0; j < col1; j++)
+			{
+				if (arr[i][j] == arr1[i][j])
+				{
+					continue;
+				}
+				else
+				{
+					flag = 1;
+					break;
+				}
+			}
+
+			if (flag == 1)
+			{
+				printf("Matrix Is Not Identical");
+				break;
+			}
+		}
+		if (flag == 0)
+		{
+			printf("Matrix is Identical");
+		}
+		
+	}
+Output:
+Enter Row And Column for First Array
+3 3
+Enter Array Element For First Array
+1
+2
+3
+4
+5
+6
+7
+8
+9
+Array Element of First Array
+1       2       3
+4       5       6
+7       8       9
+Enter Row And Column for First Array
+3 3
+Enter Array Element For First Array
+1
+2
+3
+4
+5
+6
+7
+8
+9
+Array Element of First Array
+1       2       3
+4       5       6
+7       8       9
+Matrix is Identical
+******************************************
+16. Write C program to interchange the rows in the matrix.(take row number as 
+input to interchange exa. R1 with R3 or R2 with R3).
+
+#include<stdio.h>
+void main()
+{
+	int row, column, arr[100][100], i, j,temp;
+
+	printf("Enter Row And column\n");
+	scanf_s("%d%d", &row, &column);
+
+	printf("Enter Matrix Element\n");
+
+	for (i = 0; i < row; i++)
+	{
+		for (j = 0; j < column; j++)
+		{
+			scanf_s("%d", &arr[i][j]);
+		}
+	}
+	printf("Matrix Element are\n");
+
+	for (i = 0; i < row; i++)
+	{
+		for (j = 0; j < column; j++)
+		{
+			printf("%d\t", arr[i][j]);
+		}
+		printf("\n");
+	}
+
+	//interchange Between row
+
+	for (i = 0; i < row; i++)
+	{
+		for (j = 0; j < column; j++)
+		{
+			if (i == 0)
+			{
+				temp = arr[i][j];
+				arr[i][j] = arr[i + 2][j];
+				arr[i + 2][j] = temp;
+			}
+			else if(i==1)
+			{
+				temp = arr[i][j];
+				arr[i][j] = arr[i + 1][j];
+				arr[i + 1][j] = temp;
+			}
+			
+		}
+	}
+	printf("Matrix with Interchange\n");
+
+	for (i = 0; i < row; i++)
+	{
+		for (j = 0; j < column; j++)
+		{
+			printf("%d\t", arr[i][j]);
+		}
+		printf("\n");
+	}
+
+	
+				
+}
+Output:
+Enter Row And column
+3 3
+Enter Matrix Element
+1
+2
+3
+4
+5
+6
+7
+8
+9
+Matrix Element are
+1       2       3
+4       5       6
+7       8       9
+Matrix with Interchange
+7       8       9
+1       2       3
+4       5       6
+******************************************
+17. Write C program to interchange the columns in the matrix.(take column
+number as input to interchange exa. C1 with C3 or C2 with C3).
+#include<stdio.h>
+void main()
+{
+	int row, column, arr[100][100], i, j,temp;
+
+	printf("Enter Row And column\n");
+	scanf_s("%d%d", &row, &column);
+
+	printf("Enter Matrix Element\n");
+
+	for (i = 0; i < row; i++)
+	{
+		for (j = 0; j < column; j++)
+		{
+			scanf_s("%d", &arr[i][j]);
+		}
+	}
+	printf("Matrix Element are\n");
+
+	for (i = 0; i < row; i++)
+	{
+		for (j = 0; j < column; j++)
+		{
+			printf("%d\t", arr[i][j]);
+		}
+		printf("\n");
+	}
+
+	//interchange Between row
+
+	for (i = 0; i < row; i++)
+	{
+		for (j = 0; j < column; j++)
+		{
+			if (i == 0)
+			{
+				temp = arr[j][i];
+				arr[j][i] = arr[j][i+2];
+				arr[j][i+2] = temp;
+			}
+			else if(i==1)
+			{
+				temp = arr[j][i];
+				arr[j][i] = arr[j][i+1];
+				arr[j][i+1] = temp;
+			}
+			
+		}
+	}
+	printf("Matrix with Interchange\n");
+
+	for (i = 0; i < row; i++)
+	{
+		for (j = 0; j < column; j++)
+		{
+			printf("%d\t", arr[i][j]);
+		}
+		printf("\n");
+	}
+
+	
+				
+}
+
+Output:
+Enter Row And column
+3 3
+Enter Matrix Element
+1
+2
+3
+4
+5
+6
+7
+8
+9
+Matrix Element are
+1       2       3
+4       5       6
+7       8       9
+Matrix with Interchange
+3       1       2
+6       4       5
+9       7       8
+******************************************
+18. Write C program to arrange row elements in ascending order.
+#include<stdio.h>
+void main()
+{
+	int row, column, arr[100][100], i, j,k,temp;
+
+	printf("Enter Row And column\n");
+	scanf_s("%d%d", &row, &column);
+
+	printf("Enter Matrix Element\n");
+
+	for (i = 0; i < row; i++)
+	{
+		for (j = 0; j < column; j++)
+		{
+			scanf_s("%d", &arr[i][j]);
+		}
+	}
+	printf("Matrix Element are\n");
+
+	for (i = 0; i < row; i++)
+	{
+		for (j = 0; j < column; j++)
+		{
+			printf("%d\t", arr[i][j]);
+		}
+		printf("\n");
+	}
+
+	//interchange Between row
+
+	for (i = 0; i < row; i++)
+	{
+		for (j = 0; j < column; j++)
+		{
+			
+			for (k = j + 1; k < row; k++)
+			{
+				if(arr[i][j] > arr[i][k])
+				{
+					temp = arr[i][j];
+					arr[i][j] = arr[i][k];
+					arr[i][k] = temp;
+				}
+			}
+			
+		}
+	}
+	printf("Matrix with Interchange\n");
+
+	for (i = 0; i < row; i++)
+	{
+		for (j = 0; j < column; j++)
+		{
+			printf("%d\t", arr[i][j]);
+		}
+		printf("\n");
+	}
+
+	
+				
+}
+Output:
+Enter Row And column
+3 3
+Enter Matrix Element
+9
+8
+7
+6
+5
+4
+3
+2
+1
+Matrix Element are
+9       8       7
+6       5       4
+3       2       1
+Matrix with Interchange
+7       8       9
+4       5       6
+1       2       3
+******************************************
+19. Write C program to arrange column elements in ascending order.
+#include<stdio.h>
+void main()
+{
+	int row, column, arr[100][100], i, j,k,temp;
+
+	printf("Enter Row And column\n");
+	scanf_s("%d%d", &row, &column);
+
+	printf("Enter Matrix Element\n");
+
+	for (i = 0; i < row; i++)
+	{
+		for (j = 0; j < column; j++)
+		{
+			scanf_s("%d", &arr[i][j]);
+		}
+	}
+	printf("Matrix Element are\n");
+
+	for (i = 0; i < row; i++)
+	{
+		for (j = 0; j < column; j++)
+		{
+			printf("%d\t", arr[i][j]);
+		}
+		printf("\n");
+	}
+
+	//interchange Between row
+
+	for (i = 0; i < row; i++)
+	{
+		for (j = 0; j < column; j++)
+		{
+			
+			for (k = j + 1; k < row; k++)
+			{
+				if(arr[j][i] > arr[k][i])
+				{
+					temp = arr[j][i];
+					arr[j][i] = arr[k][i];
+					arr[k][i] = temp;
+				}
+			}
+			
+		}
+	}
+	printf("column assending Order\n");
+
+	for (i = 0; i < row; i++)
+	{
+		for (j = 0; j < column; j++)
+		{
+			printf("%d\t", arr[i][j]);
+		}
+		printf("\n");
+	}
+
+	
+				
+}
+Output:
+Enter Row And column
+3 3
+Enter Matrix Element
+9
+8
+7
+6
+5
+4
+3
+2
+1
+Matrix Element are
+9       8       7
+6       5       4
+3       2       1
+column assending Order
+3       2       1
+6       5       4
+9       8       7
+******************************************
+20. Write C program to find the count of even numbers in matrix.
+
+#include<stdio.h>
+void main()
+{
+	int row, column, arr[100][100], i, j,k,count=0;
+
+	printf("Enter Row And column\n");
+	scanf_s("%d%d", &row, &column);
+
+	printf("Enter Matrix Element\n");
+
+	for (i = 0; i < row; i++)
+	{
+		for (j = 0; j < column; j++)
+		{
+			scanf_s("%d", &arr[i][j]);
+		}
+	}
+	printf("Matrix Element are\n");
+
+	for (i = 0; i < row; i++)
+	{
+		for (j = 0; j < column; j++)
+		{
+			printf("%d\t", arr[i][j]);
+		}
+		printf("\n");
+	}
+
+	
+
+	for (i = 0; i < row; i++)
+	{
+		for (j = 0; j < column; j++)
+		{
+			
+			if (arr[i][j] % 2 == 0)
+			{
+				count++;
+			}
+			
+		}
+	}
+	printf("Total Even Numbers Are:%d",count);
+
+
+}
+
+Output:
+Enter Row And column
+3  3
+Enter Matrix Element
+1
+2
+3
+4
+5
+6
+7
+8
+9
+Matrix Element are
+1       2       3
+4       5       6
+7       8       9
+Total Even Numbers Are:4
+******************************************

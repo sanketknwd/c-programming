@@ -1,0 +1,641 @@
+1]Accept Matrix
+
+#include<stdio.h>
+#include<stdlib.h>
+
+void main()
+{
+	int* r = NULL;
+	int* c = NULL;
+	int** p = NULL;
+	int i,j;
+	printf("Enter Row And Column\n");
+
+	r = (int*)malloc(sizeof(int));
+	scanf_s("%d", r);
+	c = (int*)malloc(sizeof(int));
+	scanf_s("%d", c);
+
+	printf("Enter Array Element\n");
+
+	p = (int**)malloc(*r * sizeof(int*));
+
+	for (i = 0; i < *r; i++)
+	{
+		*(p+i) = (int*)malloc(*r * sizeof(int));
+	}                                                                 
+
+	for (i = 0; i < *c; i++)
+	{
+		for (j = 0; j < *r; j++)
+		{
+			scanf_s("%d", *(p + i) + j);
+		}
+	}
+
+	printf("Array Element\n");
+
+	for (i = 0; i < *c; i++)
+	{
+		for (j = 0; j < *r; j++)
+		{
+			printf("%d\t", *(*(p + i) + j));
+		}
+		printf("\n");
+	}
+}
+***********************************
+2] Identity Matrix.
+
+
+#include<stdio.h>
+
+#include<stdio.h>
+
+void main()
+{
+	int* row = NULL;
+	int* col = NULL;
+	int** p = NULL;
+	int i, j,flag=0;
+	printf("Enter How Many Row And Column\n");
+
+	row = (int*)malloc(sizeof(int));
+	scanf_s("%d", row);
+	col = (int*)malloc(sizeof(int));
+	scanf_s("%d", col);
+
+	printf("Enter Array Element\n");
+
+	p = (int**)malloc(*row * sizeof(int*));
+
+	for (i = 0; i < *row; i++)
+	{
+		*(p + i) = (int*)malloc(*col * sizeof(int));
+	}
+
+	for (i = 0; i < *row; i++)
+	{
+		for (j = 0; j < *col; j++)
+		{
+			scanf_s("%d", *(p + i) + j);
+		}
+	}
+
+	printf("Array Element Are\n");
+
+	for (i = 0; i < *row; i++)
+	{
+		for (j = 0; j < *col; j++)
+		{
+			printf("%d\t", *(*(p + i) + j));
+		}
+		printf("\n");
+	}
+	printf("Check for Identity Matrix\n");
+
+	for (i = 0; i < *row; i++)
+	{
+		for (j = 0; j < *col; j++)
+		{
+
+			if (i == j)
+			{
+				if (*(*(p + i) + j) == 1)
+				{
+					continue;
+				}
+				else
+				{
+					flag = 1;
+					break;
+
+				}
+			}
+			else
+			{
+				if (*(*(p + i) + j) ==0)
+				{
+					continue;
+				}
+				else
+				{
+					flag= 1;
+					break;
+				}
+			}
+			
+		}
+		
+	}
+
+	if (flag == 1)
+	{
+		printf("Matrix Is not Identity Matrix\n");
+	}
+	else
+	{
+		printf("Matrix Is Identity Matrix\n");
+	}
+
+
+}
+
+Output:
+Enter How Many Row And Column
+3
+3
+Enter Array Element
+2
+1
+3
+0
+1
+0
+0
+0
+1
+Array Element Are
+2       1       3
+0       1       0
+0       0       1
+Check for Identity Matrix
+Matrix Is not Identity Matrix
+
+***************************************
+3]Upper Trangular Matrix
+
+#include<stdio.h>
+
+#include<stdio.h>
+
+void main()
+{
+	int* row = NULL;
+	int* col = NULL;
+	int** p = NULL;
+	int i, j,flag=0;
+	printf("Enter How Many Row And Column\n");
+
+	row = (int*)malloc(sizeof(int));
+	scanf_s("%d", row);
+	col = (int*)malloc(sizeof(int));
+	scanf_s("%d", col);
+
+	printf("Enter Array Element\n");
+
+	p = (int**)malloc(*row * sizeof(int*));
+
+	for (i = 0; i < *row; i++)
+	{
+		*(p + i) = (int*)malloc(*col * sizeof(int));
+	}
+
+	for (i = 0; i < *row; i++)
+	{
+		for (j = 0; j < *col; j++)
+		{
+			scanf_s("%d", *(p + i) + j);
+		}
+	}
+
+	printf("Array Element Are\n");
+
+	for (i = 0; i < *row; i++)
+	{
+		for (j = 0; j < *col; j++)
+		{
+			printf("%d\t", *(*(p + i) + j));
+		}
+		printf("\n");
+	}
+	printf("Check for Identity Matrix\n");
+
+	for (i = 0; i < *row; i++)
+	{
+		for (j = 0; j < *col; j++)
+		{
+
+			if (i > j)
+			{
+				if (*(*(p + i) + j) == 0)
+				{
+					continue;
+				}
+				else
+				{
+					flag = 1;
+					break;
+
+				}
+			}
+			
+		}
+		
+	}
+
+	if (flag == 1)
+	{
+		printf("Matrix Is Not Upper Trangular\n");
+	}
+	else
+	{
+		printf("Matrix Is Upper Trangular\n");
+	}
+
+
+}
+
+Output:
+
+Enter How Many Row And Column
+3
+3
+Enter Array Element
+1
+2
+3
+0
+1
+2
+0
+0
+1
+Array Element Are
+1       2       3
+0       1       2
+0       0       1
+Check for Identity Matrix
+Matrix Is Upper Trangular
+
+****************************************
+4]Addition Of Two Matrix
+
+#include<stdio.h>
+
+#include<stdio.h>
+
+void main()
+{
+	int* row = NULL;
+	int* col = NULL;
+	int** p = NULL;
+	int** q = NULL;
+	int i, j,flag=0;
+	printf("Enter How Many Row And Column\n");
+
+	row = (int*)malloc(sizeof(int));
+	scanf_s("%d", row);
+	col = (int*)malloc(sizeof(int));
+	scanf_s("%d", col);
+
+	printf("Enter first Array Element\n");
+
+	p = (int**)malloc(*row * sizeof(int*));
+
+	for (i = 0; i < *row; i++)
+	{
+		*(p + i) = (int*)malloc(*col * sizeof(int));
+	}
+
+	for (i = 0; i < *row; i++)
+	{
+		for (j = 0; j < *col; j++)
+		{
+			scanf_s("%d", *(p + i) + j);
+		}
+	}
+
+	printf("Array Element Are\n");
+
+	for (i = 0; i < *row; i++)
+	{
+		for (j = 0; j < *col; j++)
+		{
+			printf("%d\t", *(*(p + i) + j));
+		}
+		printf("\n");
+	}
+	printf("Enter second Array Element\n");
+
+	q = (int**)malloc(*row * sizeof(int*));
+
+	for (i = 0; i < *row; i++)
+	{
+		*(q + i) = (int*)malloc(*col * sizeof(int));
+	}
+
+	for (i = 0; i < *row; i++)
+	{
+		for (j = 0; j < *col; j++)
+		{
+			scanf_s("%d", *(q + i) + j);
+		}
+	}
+
+	printf("Array Element Are\n");
+
+	for (i = 0; i < *row; i++)
+	{
+		for (j = 0; j < *col; j++)
+		{
+			printf("%d\t", *(*(q + i) + j));
+		}
+		printf("\n");
+	}
+
+	printf("Addition Of Two Matrix\n");
+
+	for (i = 0; i < *row; i++)
+	{
+		for (j = 0; j < *col; j++)
+		{
+			printf("%d\t", *(*(p + i) + j) + *(*(q + i) + j));
+			
+		}
+		printf("\n");
+		
+	}
+
+	
+
+
+}
+
+Output:
+
+Enter How Many Row And Column
+3
+3
+Enter first Array Element
+1
+2
+3
+4
+5
+6
+7
+8
+9
+Array Element Are
+1       2       3
+4       5       6
+7       8       9
+Enter second Array Element
+1
+2
+3
+4
+5
+6
+7
+8
+9
+Array Element Are
+1       2       3
+4       5       6
+7       8       9
+Addition Of Two Matrix
+2       4       6
+8       10      12
+14      16      18
+
+*******************************
+5]Matrix multiplication
+
+#include<stdio.h>
+
+#include<stdio.h>
+
+void main()
+{
+	int* row = NULL;
+	int* col = NULL;
+	int** p = NULL;
+	int** q = NULL;
+	int i, j,k,sum=0;
+	printf("Enter How Many Row And Column\n");
+
+	row = (int*)malloc(sizeof(int));
+	scanf_s("%d", row);
+	col = (int*)malloc(sizeof(int));
+	scanf_s("%d", col);
+
+	printf("Enter first Array Element\n");
+
+	p = (int**)malloc(*row * sizeof(int*));
+
+	for (i = 0; i < *row; i++)
+	{
+		*(p + i) = (int*)malloc(*col * sizeof(int));
+	}
+
+	for (i = 0; i < *row; i++)
+	{
+		for (j = 0; j < *col; j++)
+		{
+			scanf_s("%d", *(p + i) + j);
+		}
+	}
+
+	printf("Array Element Are\n");
+
+	for (i = 0; i < *row; i++)
+	{
+		for (j = 0; j < *col; j++)
+		{
+			printf("%d\t", *(*(p + i) + j));
+		}
+		printf("\n");
+	}
+	printf("Enter second Array Element\n");
+
+	q = (int**)malloc(*row * sizeof(int*));
+
+	for (i = 0; i < *row; i++)
+	{
+		*(q + i) = (int*)malloc(*col * sizeof(int));
+	}
+
+	for (i = 0; i < *row; i++)
+	{
+		for (j = 0; j < *col; j++)
+		{
+			scanf_s("%d", *(q + i) + j);
+		}
+	}
+
+	printf("Array Element Are\n");
+
+	for (i = 0; i < *row; i++)
+	{
+		for (j = 0; j < *col; j++)
+		{
+			printf("%d\t", *(*(q + i) + j));
+		}
+		printf("\n");
+	}
+
+	printf("Addition Of Two Matrix\n");
+
+	for (i = 0; i < *row; i++)
+	{
+		for (j = 0; j < *col; j++)
+		{
+			for (k = 0; k < *col; k++)
+			{
+				
+				sum =sum + *(*(p + k) + j) * *(*(q + i) + k);
+			}
+			printf("%d\t", sum);
+			sum = 0;
+		}
+		printf("\n");
+		
+	}
+
+	
+
+
+}
+
+Output:
+Enter How Many Row And Column
+3
+3
+Enter first Array Element
+1
+2
+3
+4
+5
+6
+7
+8
+9
+Array Element Are
+1       2       3
+4       5       6
+7       8       9
+Enter second Array Element
+1
+2
+3
+4
+5
+6
+7
+8
+9
+Array Element Are
+1       2       3
+4       5       6
+7       8       9
+Addition Of Two Matrix
+30      36      42
+66      81      96
+102     126     150
+
+*****************************
+6]Transpose Matrix
+
+#include<stdio.h>
+
+#include<stdio.h>
+
+void main()
+{
+	int* row = NULL;
+	int* col = NULL;
+	int** p = NULL;
+	int** q = NULL;
+	int i, j, k, sum = 0, temp;
+	printf("Enter How Many Row And Column\n");
+
+	row = (int*)malloc(sizeof(int));
+	scanf_s("%d", row);
+	col = (int*)malloc(sizeof(int));
+	scanf_s("%d", col);
+
+	printf("Enter first Array Element\n");
+
+	p = (int**)malloc(*row * sizeof(int*));
+
+	for (i = 0; i < *row; i++)
+	{
+		*(p + i) = (int*)malloc(*col * sizeof(int));
+	}
+
+	for (i = 0; i < *row; i++)
+	{
+		for (j = 0; j < *col; j++)
+		{
+			scanf_s("%d", *(p + i) + j);
+		}
+	}
+
+	printf("Array Element Are\n");
+
+	for (i = 0; i < *row; i++)
+	{
+		for (j = 0; j < *col; j++)
+		{
+			printf("%d\t", *(*(p + i) + j));
+		}
+		printf("\n");
+	}
+	printf("Enter second Array Element\n");
+
+	q = (int**)malloc(*row * sizeof(int*));
+
+	for (i = 0; i < *row; i++)
+	{
+		*(q + i) = (int*)malloc(*col * sizeof(int));
+	}
+
+	for (i = 0; i < *row; i++)
+	{
+		for (j = 0; j < *col; j++)
+		{
+			temp = *(*(p + i) + j);
+			    *(*(q + j) + i) = temp;
+		}
+	}
+
+	printf("Array Element Are\n");
+
+	for (i = 0; i < *row; i++)
+	{
+		for (j = 0; j < *col; j++)
+		{
+			printf("%d\t", *(*(q + i) + j));
+		}
+		printf("\n");
+	}
+
+}
+
+Output:
+Enter How Many Row And Column
+3
+3
+Enter first Array Element
+1
+2
+3
+4
+5
+6
+7
+8
+9
+Array Element Are
+1       2       3
+4       5       6
+7       8       9
+Enter second Array Element
+Array Element Are
+1       4       7
+2       5       8
+3       6       9
+*****************************

@@ -1,0 +1,207 @@
+#include<stdio.h>
+
+#include<stdlib.h>
+void main()
+{
+	int* n = NULL;
+	int* p = NULL;
+	int i,j,temp;
+	printf("Enter How Many Element You Want\n");
+	n = (int*)malloc(sizeof(int));
+	scanf_s("%d", n);
+
+	printf("Enter Array Element\n");
+
+	p = (int*)malloc((*n) * sizeof(int));
+	for (i = 0; i < *n; i++)
+	{
+		scanf_s("%d", p + i);
+	}
+	
+	printf("Array Element are\n");
+	for (i = 0; i < *n; i++)
+	{
+		printf("%d\n", *(p + i));
+	}
+
+	printf("Sorted Array\n");
+	for (i = 0; i < *n; i++)
+	{
+		for (j = 0; j < *n; j++)
+		{
+			if (*(p + i) < *(p + j))
+			{
+				temp = *(p + i);
+				*(p + i) = *(p + j);
+				*(p + j) = temp;
+			}
+		}
+	}
+	
+	
+	for (i = 0; i < *n; i++)
+	{
+		printf("%d\n", *(p + i));
+	}
+}
+
+Output:
+Enter How Many Element You Want
+12
+Enter Array Element
+9
+8
+7
+6
+5
+4
+3
+2
+1
+23
+45
+67
+Array Element are
+9
+8
+7
+6
+5
+4
+3
+2
+1
+23
+45
+67
+Sorted Array
+1
+2
+3
+4
+5
+6
+7
+8
+9
+23
+45
+67
+***************************************
+#include<stdio.h>
+#include<stdlib.h>
+
+void main()
+{
+	int* n = NULL;
+	int* p = NULL;
+	int i,max,secondmax;
+	printf("Enter How many Element you want Element\n");
+
+	n = (int*)malloc(sizeof(int));
+	scanf_s("%d", n);
+	printf("Enter array element\n");
+
+	p = (int*)malloc(*n * sizeof(int));
+
+	for (i = 0; i < *n; i++)
+	{
+		scanf_s("%d", p + i);
+	}
+
+	printf("Array Element\n");
+
+	for (i = 0; i < *n; i++)
+	{
+		printf("%d\n", *(p + i));
+	}
+	max = *(p + i);
+
+	for (i = 0; i < *n; i++)
+	{
+		if (*(p + i) > max)
+		{
+			secondmax = max;
+			max = *(p + i);
+			
+		}
+	}
+	printf("secondmax = %d", secondmax);
+}
+
+Output:
+Enter How many Element you want Element
+5
+Enter array element
+12
+34
+56
+78
+90
+Array Element
+12
+34
+56
+78
+90
+secondmax = 78
+
+************************************************
+#include<stdio.h>
+#include<stdlib.h>
+
+void main()
+{
+	int* n = NULL;
+	int* p = NULL;
+	int i,max,secondmax;
+	printf("Enter How many Element you want Element\n");
+
+	n = (int*)malloc(sizeof(int));
+	scanf_s("%d", n);
+	printf("Enter array element\n");
+
+	p = (int*)malloc(*n * sizeof(int));
+
+	for (i = 0; i < *n; i++)
+	{
+		scanf_s("%d", p + i);
+	}
+
+	printf("Array Element\n");
+
+	for (i = 0; i < *n; i++)
+	{
+		printf("%d\n", *(p + i));
+	}
+
+	printf("Reverse Array Element\n");
+
+	for (i = (*n)-1; i >= 0; i--)
+	{
+		printf("%d\n", *(p + i));
+	}
+
+}
+
+Output:
+Enter How many Element you want Element
+5
+Enter array element
+1
+2
+3
+4
+5
+Array Element
+1
+2
+3
+4
+5
+Reverse Array Element
+5
+4
+3
+2
+1
